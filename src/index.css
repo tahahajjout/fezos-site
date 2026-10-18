@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors — swap --color-champagne* to Fezo's orange (#D9772B) here if the owner prefers */
+  --color-alabaster: #FDFBF7;
+  --color-linen: #F4F1EA;
+  --color-sand: #E9E3D8;
+  --color-charcoal: #1A1A1A;
+  --color-charcoal-soft: #2B2926;
+  --color-stone: #6B655D;
+  --color-champagne: #D4AF37;
+  --color-champagne-deep: #9C7C2B;
+  --color-champagne-soft: #F3EAD3;
+
+  /* Fonts */
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale */
+  --text-display: clamp(3rem, 8vw, 7.5rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.02em;
+  --text-h2: clamp(2.25rem, 5vw, 4.5rem);
+  --text-h2--line-height: 1.05;
+  --text-h3: clamp(1.5rem, 2.5vw, 2rem);
+  --text-h3--line-height: 1.2;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--letter-spacing: 0.25em;
+  --text-body-l: 1.125rem;
+  --text-body-l--line-height: 1.7;
+  --text-body: 1rem;
+  --text-body--line-height: 1.7;
+  --text-meta: 0.8125rem;
+  --text-meta--letter-spacing: 0.02em;
+  --text-price: 1.25rem;
+
+  /* Layout */
+  --container-site: 1320px;
+  --radius-sharp: 2px;
+  --shadow-modal: 0 30px 80px -20px rgb(26 26 26 / 0.35);
+
+  /* Motion */
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-micro: 300ms;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-alabaster font-sans text-body font-normal text-charcoal;
+    overflow-x: clip;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display font-light text-balance;
+  }
+  p {
+    @apply text-pretty;
+  }
+  ::selection {
+    @apply bg-champagne-soft text-charcoal;
+  }
+  :focus-visible {
+    @apply outline-1 outline-offset-4 outline-champagne-deep;
+  }
+  img {
+    @apply block max-w-full;
+  }
+}
+
+@utility eyebrow {
+  @apply font-sans text-eyebrow font-medium uppercase text-champagne-deep;
+}
+@utility gold-rule {
+  @apply block h-px w-10 bg-champagne;
+}
+@utility accent {
+  @apply italic text-champagne-deep;
+}
+@utility container-site {
+  @apply mx-auto w-full max-w-site px-6 lg:px-12;
+}
+@utility section-y {
+  @apply py-20 lg:py-32;
+}
+@utility price {
+  @apply font-display text-price font-medium italic text-champagne-deep;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
