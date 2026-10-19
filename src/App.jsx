@@ -3,12 +3,15 @@ import { Header } from './components/sections/Header'
 import { Hero } from './components/sections/Hero'
 import { Intro } from './components/sections/Intro'
 import { OfferBanner } from './components/sections/OfferBanner'
+import { Packs } from './components/sections/Packs'
+import { PriceList } from './components/sections/PriceList'
 import { Treatments } from './components/sections/Treatments'
 import { Modal } from './components/ui/Modal'
-import { serviceCategories } from './data/salon'
+import { packs, serviceCategories } from './data/salon'
 import Preview from './Preview'
 
-const services = serviceCategories.flatMap((c) => c.services)
+// Anything a "Réserver" can preselect: single services and packs.
+const bookables = [...serviceCategories.flatMap((c) => c.services), ...packs]
 
 export default function App() {
   // { serviceId } while the booking modal is open. The real form lands in step 10.
@@ -16,7 +19,7 @@ export default function App() {
   const book = (serviceId = null) => setBooking({ serviceId })
   // Price-list tab lives here so treatment cards can open the right category.
   const [priceTab, setPriceTab] = useState(serviceCategories[0].id)
-  const service = services.find((s) => s.id === booking?.serviceId)
+  const service = bookables.find((s) => s.id === booking?.serviceId)
 
   return (
     <>
@@ -32,7 +35,9 @@ export default function App() {
         <OfferBanner onBook={book} />
         <Intro />
         <Treatments onSelect={setPriceTab} />
-        <Preview onBook={book} tab={priceTab} setTab={setPriceTab} />
+        <PriceList tab={priceTab} onTab={setPriceTab} onBook={book} />
+        <Packs onBook={book} />
+        <Preview onBook={book} />
       </main>
 
       <Modal open={booking !== null} onClose={() => setBooking(null)} title="Réserver">
