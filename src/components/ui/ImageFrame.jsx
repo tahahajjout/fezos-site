@@ -33,7 +33,7 @@ export function ImageFrame({
   )
   return (
     <div
-      className={`group overflow-hidden bg-linen ${fill ? 'absolute inset-0' : 'relative aspect-(--r-m) lg:aspect-(--r)'} ${className}`}
+      className={`group overflow-hidden ${fill ? 'absolute inset-0' : 'relative aspect-(--r-m) bg-linen lg:aspect-(--r)'} ${className}`}
       style={{ '--r-m': mobileRatio.join('/'), '--r': ratio.join('/') }}
     >
       {mobileRatio === ratio ? (

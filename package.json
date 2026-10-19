@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "check:images": "node scripts/check-images.mjs",
-    "test": "node src/lib/format.test.mjs"
+    "test": "node src/lib/format.test.mjs && node src/lib/time.test.mjs"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",

@@ -131,3 +131,12 @@ export const featuredQuote = {
   text: 'On se sent chouchoutée dès la porte franchie.',
   source: 'Avis Google',
 }
+
+// Header + mobile menu. Anchors match the section ids.
+export const nav = [
+  { href: '#soins', label: 'Soins' },
+  { href: '#visite', label: 'Visite 360°' },
+  { href: '#packs', label: 'Packs' },
+  { href: '#avis', label: 'Avis' },
+  { href: '#contact', label: 'Contact' },
+]

@@ -1,0 +1,4 @@
+{
+  "note": "Art direction is fixed by CLAUDE.md (brand system). These devices are required there: eyebrows/spaced caps labels, one italic gold accent word per title, cream-and-gold palette, hairline-bordered pack cards.",
+  "allow": ["micro-label", "mixed-font-headline", "palette-cream", "outlined-box"]
+}

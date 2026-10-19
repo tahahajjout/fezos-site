@@ -10,10 +10,11 @@ export function TreatmentCard({ number, title, description, image, href, onClick
         <span className="font-display text-price italic text-champagne-deep">{number}</span>
         <h3 className="text-h3">{title}</h3>
       </div>
-      <span
-        aria-hidden="true"
-        className="mt-4 block h-px w-10 bg-champagne transition-[width] duration-700 ease-lux group-hover:w-full"
-      />
+      {/* 40px gold rule; a full-width line grows over it on hover (transform only, no layout) */}
+      <span aria-hidden="true" className="relative mt-4 block h-px">
+        <span className="gold-rule absolute start-0 top-0" />
+        <span className="absolute inset-0 origin-left scale-x-0 bg-champagne transition-transform duration-700 ease-lux group-hover:scale-x-100" />
+      </span>
       <p className="mt-4 max-w-[40ch] text-stone">{description}</p>
       <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-meta font-medium uppercase tracking-label">
         Découvrir <Arrow />

@@ -9,7 +9,7 @@
   --color-charcoal-soft: #2B2926;
   --color-stone: #6B655D;
   --color-champagne: #D4AF37;
-  --color-champagne-deep: #9C7C2B;
+  --color-champagne-deep: #80641D; /* spec said #9C7C2B, which fails AA (3.8:1 on alabaster); this passes on alabaster, linen and champagne-soft */
   --color-champagne-soft: #F3EAD3;
 
   /* Fonts */
@@ -44,11 +44,21 @@
   /* Motion */
   --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
   --duration-micro: 300ms;
+  --animate-scroll-cue: scroll-cue 2.4s var(--ease-lux) infinite;
+
+  @keyframes scroll-cue {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    50.01% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth; /* reduced-motion rule below turns this off */
+    scroll-padding-top: 6rem; /* fixed header height, so anchors land below it */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }

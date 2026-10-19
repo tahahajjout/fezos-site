@@ -1,24 +1,14 @@
 import { X } from 'lucide-react'
-import { useEffect, useId, useRef } from 'react'
+import { useId } from 'react'
+import { useDialog } from '../../hooks/useDialog'
 
 /**
  * Native <dialog>: showModal() gives aria-modal, Esc-to-close, inert background
- * (focus stays inside) and focus restore for free. We add scroll lock + backdrop click.
+ * (focus stays inside) and focus restore for free. useDialog adds the scroll lock.
  */
 export function Modal({ open, onClose, title, className = '', children }) {
-  const ref = useRef(null)
+  const ref = useDialog(open)
   const titleId = useId()
-
-  useEffect(() => {
-    const dialog = ref.current
-    if (!open) return
-    dialog.showModal()
-    document.documentElement.style.overflow = 'hidden'
-    return () => {
-      document.documentElement.style.overflow = ''
-      if (dialog.open) dialog.close()
-    }
-  }, [open])
 
   return (
     <dialog
