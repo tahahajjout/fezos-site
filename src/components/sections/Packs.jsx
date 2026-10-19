@@ -1,5 +1,6 @@
 import { images } from '../../data/images'
 import { packs } from '../../data/salon'
+import { useLang } from '../../i18n'
 import { Eyebrow } from '../ui/Eyebrow'
 import { PackCard } from '../ui/PackCard'
 import { Reveal, RevealItem } from '../ui/Reveal'
@@ -14,18 +15,20 @@ const LAYOUT = [
 ]
 
 export function Packs({ onBook }) {
+  const { t } = useLang()
   return (
     <section id="packs" aria-labelledby="packs-title" className="section-y bg-linen">
       <div className="container-site">
-        <Reveal stagger className="grid gap-8 lg:grid-cols-12 lg:items-end">
-          <RevealItem className="lg:col-span-7">
-            <Eyebrow>Packs</Eyebrow>
-            <SectionTitle id="packs-title" accent="complets." className="mt-8">
-              Des rituels
+        {/* Stacked header (title, then its line) so it doesn't repeat the split header of the sections around it */}
+        <Reveal stagger className="max-w-3xl">
+          <RevealItem>
+            <Eyebrow>{t('packs.eyebrow')}</Eyebrow>
+            <SectionTitle id="packs-title" accent={t('packs.accent')} className="mt-8">
+              {t('packs.title')}
             </SectionTitle>
           </RevealItem>
-          <RevealItem as="p" className="max-w-[40ch] text-body-l font-light lg:col-span-4 lg:col-start-9">
-            Plusieurs soins réunis en un seul rendez-vous, pour un grand jour ou simplement pour vous.
+          <RevealItem as="p" className="mt-8 max-w-[44ch] text-body-l font-light">
+            {t('packs.body')}
           </RevealItem>
         </Reveal>
 

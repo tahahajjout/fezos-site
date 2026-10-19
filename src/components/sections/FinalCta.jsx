@@ -1,10 +1,12 @@
 import { images } from '../../data/images'
+import { useLang } from '../../i18n'
 import { Button } from '../ui/Button'
 import { ImageFrame } from '../ui/ImageFrame'
 import { Reveal, RevealItem } from '../ui/Reveal'
 
 // Full-width image band — the one centred moment of the page.
 export function FinalCta({ onBook }) {
+  const { t } = useLang()
   return (
     <section
       aria-labelledby="cta-title"
@@ -17,11 +19,11 @@ export function FinalCta({ onBook }) {
       </div>
       <Reveal stagger className="container-site flex flex-col items-center py-32 text-center lg:py-48">
         <RevealItem as="h2" id="cta-title" className="text-h2">
-          Prête pour votre <em className="accent">moment Fezo’s ?</em>
+          {t('cta.title')} <em className="accent">{t('cta.accent')}</em>
         </RevealItem>
         <RevealItem className="mt-10">
           <Button variant="solid-light" onClick={() => onBook()}>
-            Réserver une expérience
+            {t('common.bookExperience')}
           </Button>
         </RevealItem>
       </Reveal>

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { frenchTime, isOfferActive, openStatus, salonNow } from './time.js'
+import { isOfferActive, openStatus, salonNow } from './time.js'
 
 // Morocco is UTC+1 (no DST since 2018, except Ramadan UTC+0).
 const at = (iso) => new Date(iso)
@@ -9,6 +9,9 @@ assert.equal(openStatus(at('2026-10-19T19:15:00Z')).open, true) // Mon 20:15
 assert.equal(openStatus(at('2026-10-20T19:15:00Z')).open, false) // Tue 20:15
 assert.equal(openStatus(at('2026-10-20T09:29:00Z')).open, false) // Tue 10:29
 assert.equal(openStatus(at('2026-10-20T09:30:00Z')).open, true) // Tue 10:30
+assert.deepEqual(openStatus(at('2026-10-20T08:00:00Z')).next, { tomorrow: false, time: '10:30' })
+assert.deepEqual(openStatus(at('2026-10-20T20:00:00Z')).next, { tomorrow: true, time: '10:30' })
+assert.equal(openStatus(at('2026-10-19T19:15:00Z')).next, null)
 // Late UTC evening is already the next day in Fès
 assert.equal(salonNow(at('2026-10-18T23:30:00Z')).iso, '2026-10-19')
 
@@ -17,10 +20,4 @@ assert.equal(isOfferActive(offer, at('2026-10-12T22:00:00Z')), true) // 23:00 on
 assert.equal(isOfferActive(offer, at('2026-10-12T23:30:00Z')), false) // 00:30 on the 13th
 assert.equal(isOfferActive(offer, at('2026-10-04T12:00:00Z')), false)
 assert.equal(isOfferActive(null), false)
-
-assert.equal(openStatus(at('2026-10-19T19:15:00Z')).label, 'Ouvert · jusqu’à 20h30')
-assert.equal(openStatus(at('2026-10-20T08:00:00Z')).label, 'Fermé · ouvre à 10h30')
-assert.equal(openStatus(at('2026-10-20T20:00:00Z')).label, 'Fermé · ouvre demain à 10h30')
-assert.equal(frenchTime('20:00'), '20h')
-assert.equal(frenchTime('10:30'), '10h30')
 console.log('time OK')

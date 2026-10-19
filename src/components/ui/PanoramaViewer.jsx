@@ -16,7 +16,7 @@ const MARKER = 0.15 // progress marker width, as a share of its track
  * (no React render per frame). `image.mirror` alternates a flipped copy so a non-360 photo
  * still loops without a visible seam.
  */
-export function PanoramaViewer({ image, label, hint, className = '' }) {
+export function PanoramaViewer({ image, label, hint, description, className = '' }) {
   const reduce = useReducedMotion()
   const descId = useId()
   const frameRef = useRef(null)
@@ -119,6 +119,7 @@ export function PanoramaViewer({ image, label, hint, className = '' }) {
       <div
         ref={frameRef}
         role="img"
+        dir="ltr" // the strip and drag direction stay physical in RTL pages
         aria-label={label}
         aria-describedby={descId}
         tabIndex={0}
@@ -166,7 +167,7 @@ export function PanoramaViewer({ image, label, hint, className = '' }) {
         <div ref={markerRef} className="h-px bg-champagne" style={{ width: `${MARKER * 100}%` }} />
       </div>
       <p id={descId} className="sr-only">
-        {image.alt}. Utilisez les flèches gauche et droite pour parcourir l’espace.
+        {image.alt}. {description}
       </p>
     </div>
   )

@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'motion/react'
+import { m as motion, useReducedMotion } from 'motion/react'
 import { DURATION, EASE, STAGGER, VIEWPORT } from '../../lib/motion'
 
 // Reduced motion renders a plain element: no hidden initial state, no animation.

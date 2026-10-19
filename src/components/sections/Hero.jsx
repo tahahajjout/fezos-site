@@ -1,26 +1,36 @@
 import { Star } from 'lucide-react'
-import { motion, useReducedMotion } from 'motion/react'
+import { m as motion, useReducedMotion } from 'motion/react'
 import { images } from '../../data/images'
 import { salon } from '../../data/salon'
 import { useOpenStatus } from '../../hooks/useOpenStatus'
+import { useLang } from '../../i18n'
+import { formatTime } from '../../lib/format'
 import { DURATION, EASE } from '../../lib/motion'
 import { Button } from '../ui/Button'
 import { Eyebrow } from '../ui/Eyebrow'
 import { ImageFrame } from '../ui/ImageFrame'
 
-const WORDS = ['Votre', 'moment']
-const title = { show: { transition: { staggerChildren: 0.12, delayChildren: 0.25 } } }
-const word = {
-  hidden: { opacity: 0, y: '0.35em' },
-  show: { opacity: 1, y: 0, transition: { duration: DURATION.reveal, ease: EASE } },
-}
-
 export function Hero({ onBook }) {
+  const { t, lang } = useLang()
   const reduce = useReducedMotion()
   const status = useOpenStatus()
-  // Supporting lines follow the headline in.
+  const words = t('hero.title').split(' ')
+  const statusLabel = status.open
+    ? t('status.openUntil', { time: formatTime(status.today.close, lang) })
+    : t(status.next.tomorrow ? 'status.opensTomorrow' : 'status.opensAt', { time: formatTime(status.next.time, lang) })
+  // Supporting lines only glide (no fade): the subline is the LCP element, so it must paint at once.
+  // Every element animates itself with its own delay (no parent→child variant hand-off: that
+  // could leave the headline stuck invisible when the visitor scrolled away mid-intro).
   const after = (delay) =>
-    reduce ? {} : { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: DURATION.reveal, ease: EASE, delay } }
+    reduce ? {} : { initial: { y: 24 }, animate: { y: 0 }, transition: { duration: DURATION.reveal, ease: EASE, delay } }
+  const word = (i) =>
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, y: '0.35em' },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: DURATION.reveal, ease: EASE, delay: 0.25 + i * 0.12 },
+        }
 
   return (
     <section
@@ -42,43 +52,37 @@ export function Hero({ onBook }) {
           zoom={false}
           ratio={[16, 9]}
           mobileRatio={[4, 5]}
-          imgClassName="object-[75%_50%]"
+          imgClassName="object-[75%_50%] rtl:object-[25%_50%]"
         />
         <div className="absolute inset-0 bg-linear-to-b from-charcoal/40 to-charcoal/80 lg:from-charcoal/25 lg:to-charcoal/65" />
-        <div className="absolute inset-0 bg-linear-to-r from-charcoal/45 to-transparent lg:to-60%" />
+        <div className="absolute inset-0 bg-linear-to-r from-charcoal/45 to-transparent lg:to-60% rtl:bg-linear-to-l" />
       </motion.div>
 
       <div className="container-site pb-24 pt-40 lg:pb-32">
         <motion.div {...after(0)}>
-          <Eyebrow>Beauty Lounge · Fès</Eyebrow>
+          <Eyebrow>{t('hero.eyebrow')}</Eyebrow>
         </motion.div>
 
-        <motion.h1
-          id="hero-title"
-          className="mt-8 text-display"
-          initial={reduce ? false : 'hidden'}
-          animate="show"
-          variants={title}
-        >
-          {WORDS.map((w) => (
-            <motion.span key={w} variants={word} className="inline-block">
+        <h1 id="hero-title" className="mt-8 text-display">
+          {words.map((w, i) => (
+            <motion.span key={`${lang}-${w}`} {...word(i)} className="inline-block">
               {w}&nbsp;
             </motion.span>
           ))}
-          <motion.em variants={word} className="accent inline-block">
-            beauté.
+          <motion.em key={lang} {...word(words.length)} className="accent inline-block">
+            {t('hero.accent')}
           </motion.em>
-        </motion.h1>
+        </h1>
 
         <motion.p {...after(0.6)} className="mt-8 max-w-[40ch] text-body-l font-light text-alabaster/85">
-          Coiffure, onglerie et soins visage dans un lounge pensé pour vous — au cœur de Champs de Course.
+          {t('hero.sub')}
         </motion.p>
 
         <motion.div {...after(0.75)} className="mt-10 flex flex-wrap gap-3">
           <Button variant="solid-light" onClick={() => onBook()}>
-            Réserver une expérience
+            {t('common.bookExperience')}
           </Button>
-          <Button variant="whatsapp-light">WhatsApp</Button>
+          <Button variant="whatsapp-light">{t('common.whatsapp')}</Button>
         </motion.div>
 
         <motion.p
@@ -87,7 +91,7 @@ export function Hero({ onBook }) {
         >
           <span className="inline-flex items-center gap-1.5">
             <Star size={14} strokeWidth={1.25} aria-hidden="true" className="fill-champagne text-champagne" />
-            {salon.rating.value.toLocaleString('fr-FR')} sur Google
+            {t('hero.rating', { n: salon.rating.value.toLocaleString(lang === 'en' ? 'en-GB' : 'fr-FR') })}
           </span>
           <span aria-hidden="true" className="hidden sm:inline">·</span>
           <span className="inline-flex items-center gap-2">
@@ -95,10 +99,10 @@ export function Hero({ onBook }) {
               aria-hidden="true"
               className={`size-1.5 rounded-full ${status.open ? 'bg-champagne' : 'bg-alabaster/40'}`}
             />
-            {status.label}
+            {statusLabel}
           </span>
           <span aria-hidden="true" className="hidden sm:inline">·</span>
-          <span>Café offert à l’arrivée</span>
+          <span>{t('hero.cafe')}</span>
         </motion.p>
       </div>
 

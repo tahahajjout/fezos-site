@@ -2,14 +2,17 @@ import { Menu } from 'lucide-react'
 import { useState } from 'react'
 import { nav } from '../../data/salon'
 import { useScrollHeader } from '../../hooks/useScrollHeader'
+import { useLang } from '../../i18n'
 import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
+import { LanguageSwitcher } from '../ui/LanguageSwitcher'
 import { Logo } from '../ui/Logo'
 import { TextLink } from '../ui/TextLink'
 import { MobileMenu } from './MobileMenu'
 
 // Transparent with light text over the hero; alabaster + blur + hairline once scrolled.
 export function Header({ onBook }) {
+  const { t } = useLang()
   const scrolled = useScrollHeader()
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -22,12 +25,12 @@ export function Header({ onBook }) {
       <Container className="flex h-20 items-center justify-between gap-8 lg:h-24">
         <Logo />
 
-        <nav aria-label="Navigation principale" className="hidden lg:block">
-          <ul className="flex gap-10">
+        <nav aria-label={t('nav.main')} className="hidden lg:block">
+          <ul className="flex gap-6 whitespace-nowrap xl:gap-10">
             {nav.map((link) => (
               <li key={link.href}>
                 <TextLink href={link.href} arrow={false}>
-                  {link.label}
+                  {t(`nav.${link.id}`)}
                 </TextLink>
               </li>
             ))}
@@ -35,15 +38,16 @@ export function Header({ onBook }) {
         </nav>
 
         <div className="flex items-center gap-2">
+          <LanguageSwitcher className="me-2 hidden lg:flex" />
           <div className="hidden sm:block">
             <Button variant={scrolled ? 'solid' : 'ghost-light'} onClick={() => onBook()}>
-              Réserver
+              {t('common.book')}
             </Button>
           </div>
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            aria-label="Ouvrir le menu"
+            aria-label={t('nav.open')}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             className="-me-3 inline-flex size-11 items-center justify-center lg:hidden"

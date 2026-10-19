@@ -1,7 +1,7 @@
 // All imagery in one place — swap ids (or replace `url()` with local files) when
 // the salon's real photos arrive. Every id verified by `npm run check:images`.
 const BASE = 'https://images.unsplash.com/photo-'
-const WIDTHS = [480, 768, 1080, 1600, 2400, 3200, 4000]
+const WIDTHS = [480, 640, 768, 1080, 1600, 2400, 3200, 4000]
 
 /** Cropped URL at width `w` for aspect ratio [rw, rh]. */
 export function url(img, w, [rw, rh] = [4, 5]) {

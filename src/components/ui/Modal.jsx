@@ -1,12 +1,14 @@
 import { X } from 'lucide-react'
 import { useId } from 'react'
 import { useDialog } from '../../hooks/useDialog'
+import { useLang } from '../../i18n'
 
 /**
  * Native <dialog>: showModal() gives aria-modal, Esc-to-close, inert background
  * (focus stays inside) and focus restore for free. useDialog adds the scroll lock.
  */
 export function Modal({ open, onClose, title, className = '', children }) {
+  const { t } = useLang()
   const ref = useDialog(open)
   const titleId = useId()
 
@@ -26,7 +28,7 @@ export function Modal({ open, onClose, title, className = '', children }) {
           <button
             type="button"
             onClick={onClose}
-            aria-label="Fermer"
+            aria-label={t('common.close')}
             className="-me-3 -mt-2 inline-flex size-11 shrink-0 items-center justify-center text-stone transition-colors hover:text-charcoal"
           >
             <X size={20} strokeWidth={1.25} aria-hidden="true" />

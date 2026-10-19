@@ -1,12 +1,26 @@
 import assert from 'node:assert/strict'
-import { formatDuration, formatPrice } from './format.js'
+import { dayName, formatDate, formatDuration, formatPrice, formatTime } from './format.js'
 
+const sp = (s) => s.replace(/\s/g, ' ') // Intl uses narrow no-break spaces
 assert.equal(formatPrice(780), '780 DH')
-assert.equal(formatPrice(1500).replace(/\s/g, ' '), '1 500 DH')
+assert.equal(sp(formatPrice(1500)), '1 500 DH')
 assert.equal(formatPrice(null), 'Sur demande')
+assert.equal(formatPrice(1500, 'en'), '1,500 MAD')
+assert.equal(formatPrice(null, 'en'), 'On request')
+assert.equal(formatPrice(780, 'ar'), '780 درهم')
 assert.equal(formatDuration(45), '45 min')
 assert.equal(formatDuration(180), '3 h')
 assert.equal(formatDuration(75), '1 h 15')
 assert.equal(formatDuration(65), '1 h 05')
 assert.equal(formatDuration(null), '')
+assert.equal(formatDuration(75, 'ar'), '1 س 15')
+assert.equal(formatTime('20:00'), '20h')
+assert.equal(formatTime('10:30'), '10h30')
+assert.equal(formatTime('10:30', 'en'), '10:30')
+assert.equal(dayName(1), 'Lundi')
+assert.equal(dayName(0, 'en'), 'Sunday')
+assert.equal(dayName(1, 'ar'), 'الاثنين')
+assert.equal(formatDate('2026-10-20'), 'mardi 20 octobre')
+assert.equal(formatDate('2026-10-12', 'fr', { weekday: false }), '12 octobre')
+assert.equal(formatDate('2026-10-20', 'en'), 'Tuesday 20 October')
 console.log('format OK')

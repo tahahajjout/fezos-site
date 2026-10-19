@@ -1,0 +1,3 @@
+# Demo site: keep out of search engines until the owner approves (CLAUDE.md §12).
+User-agent: *
+Disallow: /

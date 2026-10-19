@@ -1,5 +1,6 @@
 import { Clock, Coffee, Droplets, Footprints } from 'lucide-react'
 import { featuredQuote, promises, salon } from '../../data/salon'
+import { useLang } from '../../i18n'
 import { Eyebrow } from '../ui/Eyebrow'
 import { Reveal, RevealItem } from '../ui/Reveal'
 import { SectionTitle } from '../ui/SectionTitle'
@@ -9,6 +10,8 @@ const ICONS = { cafe: Coffee, ponctualite: Clock, massage: Footprints, produits:
 // Pourquoi Fezo's — charcoal. Title left, the four promises as a large-type list right,
 // then one review line set big across the section as its close.
 export function Why() {
+  const { t, l, lang } = useLang()
+  const [open, close] = lang === 'en' ? ['“', '”'] : ['« ', ' »']
   return (
     <section
       id="pourquoi"
@@ -18,13 +21,13 @@ export function Why() {
       <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-8">
         <Reveal stagger className="lg:col-span-5">
           <RevealItem>
-            <Eyebrow>Pourquoi Fezo’s</Eyebrow>
-            <SectionTitle id="pourquoi-title" accent="détails." className="mt-8">
-              Tout est dans les
+            <Eyebrow>{t('why.eyebrow')}</Eyebrow>
+            <SectionTitle id="pourquoi-title" accent={t('why.accent')} className="mt-8">
+              {t('why.title')}
             </SectionTitle>
           </RevealItem>
           <RevealItem as="p" className="mt-8 max-w-[36ch] text-body-l font-light text-alabaster/85">
-            Ce que nos clientes racontent le plus souvent dans leurs avis, et ce que nous tenons à chaque visite.
+            {t('why.body')}
           </RevealItem>
         </Reveal>
 
@@ -38,17 +41,21 @@ export function Why() {
                 className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 border-t border-alabaster/15 py-8 last:border-b"
               >
                 <Icon size={20} strokeWidth={1.25} aria-hidden="true" className="mt-2 text-champagne" />
-                <h3 className="text-h3">{p.title}</h3>
-                <p className="col-start-2 max-w-[48ch] text-alabaster/75">{p.text}</p>
+                <h3 className="text-h3">{l(p.title)}</h3>
+                <p className="col-start-2 max-w-[48ch] text-alabaster/75">{l(p.text)}</p>
               </RevealItem>
             )
           })}
         </Reveal>
 
         <Reveal as="figure" className="mt-6 lg:col-span-10 lg:mt-16">
-          <blockquote className="font-display text-h2 font-light italic">« {featuredQuote.text} »</blockquote>
+          <blockquote className="font-display text-h2 font-light italic">
+            {open}
+            {l(featuredQuote)}
+            {close}
+          </blockquote>
           <figcaption className="mt-6 text-meta text-alabaster/70">
-            {featuredQuote.source} · {salon.rating.value.toLocaleString('fr-FR')}/5 sur {salon.rating.count} avis
+            {t('why.quoteMeta', { n: salon.rating.value.toLocaleString(lang === 'en' ? 'en-GB' : 'fr-FR'), count: salon.rating.count })}
           </figcaption>
         </Reveal>
       </div>
