@@ -24,6 +24,8 @@
   --text-h2--line-height: 1.05;
   --text-h3: clamp(1.5rem, 2.5vw, 2rem);
   --text-h3--line-height: 1.2;
+  --text-wordmark: clamp(5rem, 22vw, 20rem);
+  --text-wordmark--line-height: 0.8;
   --text-eyebrow: 0.75rem;
   --text-eyebrow--letter-spacing: 0.25em;
   --text-body-l: 1.125rem;

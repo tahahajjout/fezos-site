@@ -1,14 +1,21 @@
 import { useState } from 'react'
+import { FinalCta } from './components/sections/FinalCta'
+import { Footer } from './components/sections/Footer'
+import { Gallery } from './components/sections/Gallery'
 import { Header } from './components/sections/Header'
 import { Hero } from './components/sections/Hero'
 import { Intro } from './components/sections/Intro'
+import { Location } from './components/sections/Location'
 import { OfferBanner } from './components/sections/OfferBanner'
 import { Packs } from './components/sections/Packs'
+import { PanoramaTour } from './components/sections/PanoramaTour'
 import { PriceList } from './components/sections/PriceList'
+import { Reviews } from './components/sections/Reviews'
+import { StickyMobileBar } from './components/sections/StickyMobileBar'
 import { Treatments } from './components/sections/Treatments'
+import { Why } from './components/sections/Why'
 import { Modal } from './components/ui/Modal'
 import { packs, serviceCategories } from './data/salon'
-import Preview from './Preview'
 
 // Anything a "Réserver" can preselect: single services and packs.
 const bookables = [...serviceCategories.flatMap((c) => c.services), ...packs]
@@ -36,9 +43,16 @@ export default function App() {
         <Intro />
         <Treatments onSelect={setPriceTab} />
         <PriceList tab={priceTab} onTab={setPriceTab} onBook={book} />
+        <PanoramaTour />
         <Packs onBook={book} />
-        <Preview onBook={book} />
+        <Why />
+        <Gallery />
+        <Reviews />
+        <Location />
+        <FinalCta onBook={book} />
       </main>
+      <Footer />
+      <StickyMobileBar onBook={book} />
 
       <Modal open={booking !== null} onClose={() => setBooking(null)} title="Réserver">
         <p className="text-stone">

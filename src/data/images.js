@@ -1,7 +1,7 @@
 // All imagery in one place — swap ids (or replace `url()` with local files) when
 // the salon's real photos arrive. Every id verified by `npm run check:images`.
 const BASE = 'https://images.unsplash.com/photo-'
-const WIDTHS = [480, 768, 1080, 1600, 2400]
+const WIDTHS = [480, 768, 1080, 1600, 2400, 3200, 4000]
 
 /** Cropped URL at width `w` for aspect ratio [rw, rh]. */
 export function url(img, w, [rw, rh] = [4, 5]) {
@@ -19,7 +19,14 @@ export const images = {
   finalCta: { id: '1556760544-74068565f05c', alt: 'Flacons d’huiles et bougie sur une table en bois' },
 
   // 360° viewer — cropped very wide; placeholder until the real salon panorama
-  panorama: { id: '1618221195710-dd6b41faaea6', alt: 'Espace lounge chaleureux baigné de lumière naturelle', ratio: [10, 3] },
+  // mirror: the stand-in is a plain wide photo whose edges don't meet, so the viewer alternates it
+  // with a flipped copy to loop without a seam. Set to false for a real 360° panorama.
+  panorama: {
+    id: '1618221195710-dd6b41faaea6',
+    alt: 'Espace lounge chaleureux baigné de lumière naturelle',
+    ratio: [10, 3],
+    mirror: true,
+  },
 
   treatments: {
     coiffure: { id: '1580618672591-eb180b1a973f', alt: 'Coiffeuse réalisant un brushing sur cheveux longs' },
@@ -35,14 +42,14 @@ export const images = {
     rentree: { id: '1562322140-8baeececf3df', alt: 'Brushing en salon devant une grande fenêtre' },
   },
 
-  // ratio drives the editorial masonry: mix of 4:5, 1:1, 16:9
+  // ratio drives the editorial masonry: mix of 4:5, 1:1, 16:9. Order balances the 3 CSS columns.
   gallery: [
     { id: '1610992015732-2449b76344bc', alt: 'Manucure naturelle aux tons rosés', ratio: [4, 5] },
     { id: '1620916566398-39f1143ab7be', alt: 'Crème de soin posée sur du lin blanc', ratio: [1, 1] },
     { id: '1580618672591-eb180b1a973f', alt: 'Brushing en cours sur cheveux châtains', ratio: [16, 9] },
     { id: '1617897903246-719242758050', alt: 'Sérum doré et branche d’eucalyptus', ratio: [4, 5] },
-    { id: '1576426863848-c21f53c60b19', alt: 'Flacon compte-gouttes sur marbre clair', ratio: [1, 1] },
     { id: '1619451334792-150fd785ee74', alt: 'Mains tenant un pot de gel hydratant', ratio: [4, 5] },
+    { id: '1576426863848-c21f53c60b19', alt: 'Flacon compte-gouttes sur marbre clair', ratio: [1, 1] },
     { id: '1631729371254-42c2892f0e6e', alt: 'Flacons de soins capillaires sur plan en marbre', ratio: [16, 9] },
     { id: '1607779097040-26e80aa78e66', alt: 'Ongles lilas et argent sur maille crème', ratio: [1, 1] },
   ],
