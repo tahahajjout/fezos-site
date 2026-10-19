@@ -1,0 +1,49 @@
+import { X } from 'lucide-react'
+import { useEffect, useId, useRef } from 'react'
+
+/**
+ * Native <dialog>: showModal() gives aria-modal, Esc-to-close, inert background
+ * (focus stays inside) and focus restore for free. We add scroll lock + backdrop click.
+ */
+export function Modal({ open, onClose, title, className = '', children }) {
+  const ref = useRef(null)
+  const titleId = useId()
+
+  useEffect(() => {
+    const dialog = ref.current
+    if (!open) return
+    dialog.showModal()
+    document.documentElement.style.overflow = 'hidden'
+    return () => {
+      document.documentElement.style.overflow = ''
+      if (dialog.open) dialog.close()
+    }
+  }, [open])
+
+  return (
+    <dialog
+      ref={ref}
+      aria-labelledby={titleId}
+      onClose={onClose}
+      onClick={(e) => e.target === ref.current && onClose()}
+      className={`m-auto max-h-[90svh] w-full max-w-[min(36rem,calc(100%-2rem))] overflow-y-auto rounded-sharp bg-alabaster p-0 text-charcoal shadow-modal backdrop:bg-charcoal/60 transition-[opacity,translate] duration-500 ease-lux starting:open:translate-y-4 starting:open:opacity-0 ${className}`}
+    >
+      <div className="p-6 sm:p-10">
+        <div className="flex items-start justify-between gap-6">
+          <h2 id={titleId} className="text-h3">
+            {title}
+          </h2>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Fermer"
+            className="-me-3 -mt-2 inline-flex size-11 shrink-0 items-center justify-center text-stone transition-colors hover:text-charcoal"
+          >
+            <X size={20} strokeWidth={1.25} aria-hidden="true" />
+          </button>
+        </div>
+        <div className="mt-8">{children}</div>
+      </div>
+    </dialog>
+  )
+}

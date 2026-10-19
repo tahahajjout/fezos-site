@@ -34,6 +34,8 @@
   --text-meta--letter-spacing: 0.02em;
   --text-price: 1.25rem;
 
+  --tracking-label: 0.16em;
+
   /* Layout */
   --container-site: 1320px;
   --radius-sharp: 2px;
