@@ -1,9 +1,11 @@
 import { Clock, Coffee, Droplets, Footprints } from 'lucide-react'
 import { featuredQuote, promises, salon } from '../../data/salon'
+import { useScrollWords } from '../../hooks/useScrollWords'
 import { useLang } from '../../i18n'
 import { Eyebrow } from '../ui/Eyebrow'
 import { Reveal, RevealItem } from '../ui/Reveal'
 import { SectionTitle } from '../ui/SectionTitle'
+import { Words } from '../ui/Words'
 
 const ICONS = { cafe: Coffee, ponctualite: Clock, massage: Footprints, produits: Droplets }
 
@@ -12,6 +14,7 @@ const ICONS = { cafe: Coffee, ponctualite: Clock, massage: Footprints, produits:
 export function Why() {
   const { t, l, lang } = useLang()
   const [open, close] = lang === 'en' ? ['“', '”'] : ['« ', ' »']
+  const quoteRef = useScrollWords('fill', { deps: [lang] })
   return (
     <section
       id="pourquoi"
@@ -49,10 +52,9 @@ export function Why() {
         </Reveal>
 
         <Reveal as="figure" className="mt-6 lg:col-span-10 lg:mt-16">
-          <blockquote className="font-display text-h2 font-light italic">
-            {open}
-            {l(featuredQuote)}
-            {close}
+          {/* fills in word by word with scroll, gold at the leading edge */}
+          <blockquote ref={quoteRef} className="font-display text-h2 font-light italic">
+            <Words text={`${open}${l(featuredQuote)}${close}`} />
           </blockquote>
           <figcaption className="mt-6 text-meta text-alabaster/70">
             {t('why.quoteMeta', { n: salon.rating.value.toLocaleString(lang === 'en' ? 'en-GB' : 'fr-FR'), count: salon.rating.count })}

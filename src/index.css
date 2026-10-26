@@ -47,6 +47,13 @@
   --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
   --duration-micro: 300ms;
   --animate-scroll-cue: scroll-cue 2.4s var(--ease-lux) infinite;
+  --animate-nudge: nudge 2s var(--ease-lux) infinite;
+
+  /* transform (not translate) so an RTL-flipped arrow nudges the mirrored way too */
+  @keyframes nudge {
+    0%, 60%, 100% { transform: translateX(0); }
+    30% { transform: translateX(5px); }
+  }
 
   @keyframes scroll-cue {
     0% { transform: scaleY(0); transform-origin: top; }
@@ -63,6 +70,9 @@
     scroll-padding-top: 6rem; /* fixed header height, so anchors land below it */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+  }
+  html.lenis {
+    scroll-behavior: auto; /* Lenis does the easing; CSS smoothing would fight its per-frame scroll */
   }
   body {
     @apply bg-alabaster font-sans text-body font-normal text-charcoal;

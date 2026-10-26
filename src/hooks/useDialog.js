@@ -15,3 +15,11 @@ export function useDialog(open) {
   }, [open])
   return ref
 }
+
+/**
+ * <dialog onClose> handler. The native `close` event is queued, so after a quick close → reopen
+ * it can land while the dialog is open again and would shut it. Only pass it on if still closed.
+ */
+export const onNativeClose = (onClose) => (e) => {
+  if (!e.currentTarget.open) onClose()
+}

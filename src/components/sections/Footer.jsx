@@ -23,7 +23,7 @@ export function Footer() {
               <br />
               {postalCode} {l(salon.address.city)}
             </address>
-            <a href={`tel:${salon.phone.tel}`} className="mt-3 inline-block hover:text-alabaster">
+            <a href={`tel:${salon.phone.tel}`} className="mt-1 inline-flex min-h-11 items-center hover:text-alabaster">
               {salon.phone.display}
             </a>
           </div>

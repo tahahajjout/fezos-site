@@ -7,6 +7,7 @@ import { Eyebrow } from '../ui/Eyebrow'
 import { Reveal, RevealItem } from '../ui/Reveal'
 import { ReviewCard } from '../ui/ReviewCard'
 import { Stars } from '../ui/Stars'
+import { SwipeHint } from '../ui/SwipeHint'
 import { TextLink } from '../ui/TextLink'
 
 const arrow =
@@ -62,6 +63,8 @@ export function Reviews() {
             </li>
           ))}
         </ul>
+        {/* touch sizes; desktop has the arrows next to the rating */}
+        <SwipeHint trackRef={track} count={reviews.length} className="lg:hidden" />
       </div>
     </section>
   )

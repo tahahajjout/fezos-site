@@ -1,9 +1,11 @@
+import { useRef } from 'react'
 import { images } from '../../data/images'
 import { treatments } from '../../data/salon'
 import { useLang } from '../../i18n'
 import { Eyebrow } from '../ui/Eyebrow'
 import { Reveal, RevealItem } from '../ui/Reveal'
 import { SectionTitle } from '../ui/SectionTitle'
+import { SwipeHint } from '../ui/SwipeHint'
 import { TreatmentCard } from '../ui/TreatmentCard'
 
 // Each card sits at its own height on desktop (staggered editorial grid); 2-up on tablet.
@@ -12,6 +14,7 @@ const OFFSETS = ['', 'sm:mt-20 lg:mt-28', 'lg:mt-10', 'sm:mt-20 lg:mt-40']
 // "Découvrir" opens the price list on the card's category.
 export function Treatments({ onSelect }) {
   const { t } = useLang()
+  const track = useRef(null)
   return (
     <section id="soins" aria-labelledby="soins-title" className="section-y bg-linen">
       <div className="container-site">
@@ -30,6 +33,7 @@ export function Treatments({ onSelect }) {
         {/* Phones: a swipe row with the next card peeking (instead of four full-screen photos stacked);
             from sm: the staggered grid. The row bleeds to the screen edges inside the container gutter. */}
         <Reveal
+          ref={track}
           stagger
           className="-mx-6 mt-16 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-14 sm:overflow-visible sm:px-0 lg:mt-24 lg:grid-cols-4 lg:gap-x-8 [&::-webkit-scrollbar]:hidden"
         >
@@ -44,6 +48,7 @@ export function Treatments({ onSelect }) {
             </RevealItem>
           ))}
         </Reveal>
+        <SwipeHint trackRef={track} count={treatments.length} className="sm:hidden" />
       </div>
     </section>
   )

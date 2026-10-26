@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { useRef } from 'react'
 import { srcSet, url } from '../../data/images'
-import { useDialog } from '../../hooks/useDialog'
+import { onNativeClose, useDialog } from '../../hooks/useDialog'
 import { useLang } from '../../i18n'
 
 const control =
@@ -21,7 +21,7 @@ export function Lightbox({ items, index, onIndex, onClose }) {
     <dialog
       ref={ref}
       aria-label={t('gallery.dialog')}
-      onClose={onClose}
+      onClose={onNativeClose(onClose)}
       onKeyDown={(e) => {
         if (e.key === 'ArrowRight') go(flip)
         if (e.key === 'ArrowLeft') go(-flip)

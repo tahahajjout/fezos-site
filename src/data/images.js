@@ -17,6 +17,7 @@ export const images = {
   hero: { id: '1515377905703-c4788e51af15', alt: 'Mains déposant une goutte d’huile de soin, lumière chaude et tamisée' },
   lounge: { id: '1600210492486-724fe5c67fb0', alt: 'Salon lumineux aux tons crème, fauteuils et plantes' },
   finalCta: { id: '1556760544-74068565f05c', alt: 'Flacons d’huiles et bougie sur une table en bois' },
+  gift: { id: '1608571423902-eed4a5ad8108', alt: 'Flacon de sérum ambré sur un socle en bois, ombre de palme' },
 
   // 360° viewer — cropped very wide; placeholder until the real salon panorama
   // mirror: the stand-in is a plain wide photo whose edges don't meet, so the viewer alternates it

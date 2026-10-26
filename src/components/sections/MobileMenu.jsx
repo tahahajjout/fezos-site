@@ -1,7 +1,7 @@
 import { X } from 'lucide-react'
 import { m as motion, useReducedMotion } from 'motion/react'
 import { nav, salon } from '../../data/salon'
-import { useDialog } from '../../hooks/useDialog'
+import { onNativeClose, useDialog } from '../../hooks/useDialog'
 import { useLang } from '../../i18n'
 import { DURATION, EASE, STAGGER } from '../../lib/motion'
 import { Button } from '../ui/Button'
@@ -25,7 +25,7 @@ export function MobileMenu({ open, onClose, onBook }) {
       ref={ref}
       id="mobile-menu"
       aria-label={t('nav.menu')}
-      onClose={onClose}
+      onClose={onNativeClose(onClose)}
       className="m-0 h-dvh max-h-none w-full max-w-none bg-charcoal p-0 text-alabaster backdrop:bg-charcoal"
     >
       {open && (

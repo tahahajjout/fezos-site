@@ -9,8 +9,10 @@ import { DURATION, EASE } from '../../lib/motion'
 import { Button } from '../ui/Button'
 import { Eyebrow } from '../ui/Eyebrow'
 import { ImageFrame } from '../ui/ImageFrame'
+import { TextLink } from '../ui/TextLink'
 
-export function Hero({ onBook }) {
+// introDelay: seconds to wait while the splash curtain is still covering the hero.
+export function Hero({ onBook, introDelay = 0 }) {
   const { t, lang } = useLang()
   const reduce = useReducedMotion()
   const status = useOpenStatus()
@@ -22,14 +24,14 @@ export function Hero({ onBook }) {
   // Every element animates itself with its own delay (no parent→child variant hand-off: that
   // could leave the headline stuck invisible when the visitor scrolled away mid-intro).
   const after = (delay) =>
-    reduce ? {} : { initial: { y: 24 }, animate: { y: 0 }, transition: { duration: DURATION.reveal, ease: EASE, delay } }
+    reduce ? {} : { initial: { y: 24 }, animate: { y: 0 }, transition: { duration: DURATION.reveal, ease: EASE, delay: introDelay + delay } }
   const word = (i) =>
     reduce
       ? {}
       : {
           initial: { opacity: 0, y: '0.35em' },
           animate: { opacity: 1, y: 0 },
-          transition: { duration: DURATION.reveal, ease: EASE, delay: 0.25 + i * 0.12 },
+          transition: { duration: DURATION.reveal, ease: EASE, delay: introDelay + 0.25 + i * 0.12 },
         }
 
   return (
@@ -42,7 +44,7 @@ export function Hero({ onBook }) {
         className="absolute inset-0 -z-10"
         initial={reduce ? false : { scale: 1.08 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 2, ease: EASE }}
+        transition={{ duration: 2, ease: EASE, delay: introDelay }}
       >
         {/* focus right so the oil drop sits beside the headline, not under it */}
         <ImageFrame
@@ -83,6 +85,12 @@ export function Hero({ onBook }) {
             {t('common.bookExperience')}
           </Button>
           <Button variant="whatsapp-light">{t('common.whatsapp')}</Button>
+        </motion.div>
+
+        <motion.div {...after(0.82)} className="mt-4">
+          <TextLink href="#trouver" className="text-champagne">
+            {t('hero.finder')}
+          </TextLink>
         </motion.div>
 
         <motion.p

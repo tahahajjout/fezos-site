@@ -4,6 +4,16 @@
 
 ---
 
+## Strategy (updated 2026-10-24)
+
+- **Product = a reusable high-end salon template.** Fezo's is the first demo. Targets: high-end salons, spas and beauty centers (Morocco first) that have no site or a weaker one.
+- **Rebrand = data only.** A new client means editing `src/data/salon.js`, `src/data/images.js`, `src/i18n/*.js` (brand name appears in some strings) and the colour/font tokens in `src/index.css`. Components never hard-code a salon's name, phone, prices or photos.
+- **High-end patterns to keep** (from research on Royal Mansour Spa, Aman, Joanna Czech, Rossano Ferretti, Josh Wood): named experts, a guided "find my treatment" flow, gift cards, open prices, one clear "Réserver", partner product brands.
+- **What clients want** (salon surveys, 2025): easy booking (71% skipped a booking because it was hard), replies after hours (81%), visible prices, real portfolio work, a human for personal questions.
+- **AI receptionist** = the paid upsell. Phase A website chat → Phase B WhatsApp → Phase C phone calls. Free stack for testing (Gemini free tier + Vercel Hobby). Guide: `docs/AI-RECEPTIONIST.md`.
+
+---
+
 ## 0. Your role
 
 Act as a **premium frontend creative director and expert React developer**.
@@ -256,6 +266,20 @@ Custom, **zero-dependency** `PanoramaViewer` component:
 - Small note: "Votre demande sera confirmée par notre équipe sur WhatsApp."
 - Focus trap, Esc to close, scroll lock, `aria-modal`.
 
+### 6.17 Trouver mon soin (after Treatments, `champagne-soft`)
+- Two questions: area (Cheveux · Mains & pieds · Visage & regard) → wish → one suggested service or pack with price, duration and "Réserver" (opens the modal preselected). Data: `finder` in `salon.js`.
+
+### 6.18 Carte cadeau (after Packs, `alabaster`)
+- Image left, amounts (`giftCard.amounts`) right → WhatsApp message "je souhaite offrir une carte cadeau de {amount}". No payment online.
+
+### 6.19 L'équipe (after Why, `linen`)
+- Team named in reviews, typographic (big serif names on hairlines). **No stock faces standing in for real people**; add portraits only with the salon's real photos.
+
+### 6.20 AI receptionist (planned — see `docs/AI-RECEPTIONIST.md`)
+- Phase A: chat bubble on the site → `/api/chat` (Vercel function) → Gemini. Knows only `salon.js` data; hands bookings to the booking modal / WhatsApp.
+- Phase B: same brain answering the WhatsApp Cloud API test number via `/api/whatsapp` webhook.
+- Phase C: phone calls (paid only, not in the free test).
+
 ---
 
 ## 7. Internationalization
@@ -290,7 +314,7 @@ Custom, **zero-dependency** `PanoramaViewer` component:
 ---
 
 ## 11. Security
-v1 is static (no backend, no secrets).
+v1 is static (no backend, no secrets). **Exception: the AI receptionist** runs in Vercel functions under `api/`; its keys live only in Vercel env vars (never `VITE_*`, never in the repo). The browser only calls same-origin `/api/*`, so the CSP stays `'self'`. Validate every request (length caps, message count), verify Meta's `X-Hub-Signature-256` on the WhatsApp webhook, and never let model output run code or links unescaped.
 - No secrets in repo; `.env` in `.gitignore`.
 - Booking form: validate (service from fixed list, date ≥ today, time within hours, name ≤ 50 chars letters/spaces, phone digits only). Build WhatsApp URL with `encodeURIComponent` only.
 - No `dangerouslySetInnerHTML`, no `eval`.
@@ -341,6 +365,10 @@ src/
 11. i18n FR/EN/AR (RTL).
 12. SEO, noindex, robots.txt, `vercel.json`, a11y + Lighthouse pass, overflow check at 360px.
 13. **Taste review:** go section by section with the taste plugin + ui-styling; list weaknesses and fix them.
+14. ✅ High-end sections: Trouver mon soin, Carte cadeau, L'équipe (§6.17–6.19).
+15. AI receptionist Phase A — website chat + `/api/chat` (§6.20).
+16. AI receptionist Phase B — WhatsApp Cloud API webhook.
+17. Template pass: second demo salon from data only, to prove the rebrand works.
 
 ---
 
@@ -359,4 +387,4 @@ src/
 Real booking backend (Node/Express + MySQL), admin dashboard (appointments, slots, no-shows), WhatsApp/SMS reminders, owner edits services/prices/offers → monthly subscription.
 
 ## 17. To confirm with the owner
-Real price list & durations · real photos + a real 360° panorama of the salon · team & specialties · logo file & exact brand color (orange vs gold) · Arabic version wanted?
+Real price list & durations · real photos + a real 360° panorama of the salon · team & specialties (+ portraits) · logo file & exact brand color (orange vs gold) · Arabic version wanted? · gift cards offered? which amounts? · AI receptionist: tone, what it may promise, which WhatsApp number.

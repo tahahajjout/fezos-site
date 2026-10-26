@@ -5,8 +5,9 @@ export const SLOT = 30 // minutes between start times
 export const LEAD = 60 // same-day bookings start at least this long from now
 export const MAX_DAYS = 90 // how far ahead the calendar opens
 
-/** Every bookable id: single services and packs. The form only accepts these. */
-export const BOOKABLE_IDS = new Set([...serviceCategories.flatMap((c) => c.services.map((s) => s.id)), ...packs.map((p) => p.id)])
+/** Every bookable item (single services and packs) and their ids. The form only accepts these. */
+export const bookables = [...serviceCategories.flatMap((c) => c.services), ...packs]
+export const BOOKABLE_IDS = new Set(bookables.map((b) => b.id))
 
 const pad = (n) => String(n).padStart(2, '0')
 const hhmm = (min) => `${pad(Math.floor(min / 60))}:${pad(min % 60)}`

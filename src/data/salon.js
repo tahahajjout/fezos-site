@@ -330,6 +330,72 @@ export const packs = [
   },
 ]
 
+// "Trouver mon soin": step 1 picks an area, step 2 a wish; each wish points to a bookable id (service or pack).
+export const finder = [
+  {
+    id: 'cheveux',
+    image: 'coiffure', // images.treatments key
+    label: { fr: 'Mes cheveux', en: 'My hair', ar: 'شعري' },
+    wishes: [
+      { serviceId: 'lissage-bresilien', label: { fr: 'Des cheveux lisses et disciplinés', en: 'Smooth, frizz-free hair', ar: 'شعر أملس ومنضبط' } },
+      { serviceId: 'soin-apres-ete', label: { fr: 'Réparer mes longueurs après l’été', en: 'Repair my lengths after summer', ar: 'إصلاح أطراف شعري بعد الصيف' } },
+      { serviceId: 'soin-boucles', label: { fr: 'Des boucles hydratées et définies', en: 'Hydrated, defined curls', ar: 'تموجات مرطبة ومحددة' } },
+      { serviceId: 'chignon-invitee', label: { fr: 'Une coiffure pour un mariage', en: 'Hair for a wedding', ar: 'تسريحة لحفل زفاف' } },
+    ],
+  },
+  {
+    id: 'mains',
+    image: 'onglerie', // images.treatments key
+    label: { fr: 'Mes mains & pieds', en: 'My hands & feet', ar: 'يداي وقدماي' },
+    wishes: [
+      { serviceId: 'biab', label: { fr: 'Des ongles naturels et solides', en: 'Strong, natural nails', ar: 'أظافر طبيعية وقوية' } },
+      { serviceId: 'pose', label: { fr: 'Des ongles longs, sur mesure', en: 'Long, made-to-measure nails', ar: 'أظافر طويلة حسب الرغبة' } },
+      { serviceId: 'pedicure-medicale', label: { fr: 'Des pieds soignés en profondeur', en: 'Deep care for my feet', ar: 'عناية عميقة بقدمي' } },
+      { serviceId: 'mains-pieds', label: { fr: 'Tout, en un seul rendez-vous', en: 'Everything, in one visit', ar: 'كل شيء في موعد واحد' } },
+    ],
+  },
+  {
+    id: 'visage',
+    image: 'visage', // images.treatments key
+    label: { fr: 'Mon visage & regard', en: 'My face & eyes', ar: 'وجهي ونظرتي' },
+    wishes: [
+      { serviceId: 'hydrafacial', label: { fr: 'Un teint éclatant', en: 'A radiant complexion', ar: 'بشرة مشرقة' } },
+      { serviceId: 'brow-lift', label: { fr: 'Des sourcils structurés', en: 'Defined brows', ar: 'حواجب محددة' } },
+      { serviceId: 'lash-lift', label: { fr: 'Des cils recourbés', en: 'Lifted lashes', ar: 'رموش مرفوعة' } },
+      { serviceId: 'eclat', label: { fr: 'Un rituel complet', en: 'A complete ritual', ar: 'طقس متكامل' } },
+    ],
+  },
+]
+
+// Team members named in Google reviews. Typographic cards, no portraits until the salon sends real photos.
+export const team = [
+  {
+    id: 'fatima-zohra',
+    name: 'Lala Fatima Zohra',
+    role: { fr: 'Accueil & conseil', en: 'Welcome & advice', ar: 'الاستقبال والنصيحة' },
+    text: {
+      fr: 'Elle vous reçoit avec le café, prend le temps de vous écouter et vous oriente vers le soin qui vous ressemble.',
+      en: 'She welcomes you with a coffee, takes time to listen and guides you to the treatment that suits you.',
+      ar: 'تستقبلك بالقهوة، وتأخذ وقتها للإصغاء إليك، وترشدك إلى العلاج الذي يناسبك.',
+    },
+    serviceId: null,
+  },
+  {
+    id: 'aziza',
+    name: 'Aziza',
+    role: { fr: 'Brushing & coiffure', en: 'Blow-dry & styling', ar: 'البراشينغ والتصفيف' },
+    text: {
+      fr: 'Nos clientes la citent pour ses brushings, souples et soignés, du lisse parfait au wavy.',
+      en: 'Clients mention her for her blow-dries, soft and polished, from perfectly sleek to wavy.',
+      ar: 'تذكرها زبوناتنا لبراشينغ ناعم ومتقن، من الأملس التام إلى المموج.',
+    },
+    serviceId: 'brushing',
+  },
+]
+
+// Gift card amounts in DH. The offer itself is to confirm with the owner.
+export const giftCard = { amounts: [500, 1000, 1500], confirmed: false }
+
 // Limited offer banner. Hidden automatically once `endsAt` has passed (inclusive, salon time).
 // Text comes from the service name + i18n; the end date is formatted per language.
 export const offer = {
@@ -448,6 +514,7 @@ export const featuredQuote = {
 // Header + mobile menu. Anchors match the section ids; labels live in i18n under nav.<id>.
 export const nav = [
   { id: 'soins', href: '#soins' },
+  { id: 'trouver', href: '#trouver' },
   { id: 'visite', href: '#visite' },
   { id: 'packs', href: '#packs' },
   { id: 'avis', href: '#avis' },

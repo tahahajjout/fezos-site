@@ -1,16 +1,19 @@
 import { Star } from 'lucide-react'
 import { images } from '../../data/images'
 import { hours, salon } from '../../data/salon'
+import { useScrollWords } from '../../hooks/useScrollWords'
 import { useLang } from '../../i18n'
 import { formatTime } from '../../lib/format'
 import { Eyebrow } from '../ui/Eyebrow'
 import { ImageFrame } from '../ui/ImageFrame'
 import { Reveal, RevealItem } from '../ui/Reveal'
 import { SectionTitle } from '../ui/SectionTitle'
+import { Words } from '../ui/Words'
 
 // L'expérience Fezo's — editorial split: statement + picture left (7 cols), text and facts right (4 cols, offset).
 export function Intro() {
   const { t, lang } = useLang()
+  const titleRef = useScrollWords('focus', { deps: [lang] })
   const stats = [
     {
       value: (
@@ -29,8 +32,13 @@ export function Intro() {
       <Reveal stagger className="container-site grid gap-12 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
         <RevealItem className="lg:col-span-7">
           <Eyebrow>{t('intro.eyebrow')}</Eyebrow>
-          <SectionTitle id="experience-title" accent={t('intro.accent')} className="mt-8">
-            {t('intro.title')}
+          <SectionTitle
+            ref={titleRef}
+            id="experience-title"
+            accent={<Words text={t('intro.accent')} />}
+            className="mt-8"
+          >
+            <Words text={t('intro.title')} />
           </SectionTitle>
         </RevealItem>
 

@@ -1,14 +1,13 @@
 import { useId, useState } from 'react'
 import { packs, serviceCategories } from '../../data/salon'
 import { useLang } from '../../i18n'
-import { bookingRange, firstOpenDate, slotsFor, validateBooking } from '../../lib/booking'
+import { bookables, bookingRange, firstOpenDate, slotsFor, validateBooking } from '../../lib/booking'
 import { formatTime } from '../../lib/format'
 import { bookingMessage, whatsappUrl } from '../../lib/whatsapp'
 import { Button } from '../ui/Button'
 import { Field, control } from '../ui/Field'
 import { Modal } from '../ui/Modal'
 
-const bookables = [...serviceCategories.flatMap((c) => c.services), ...packs]
 const ORDER = ['service', 'date', 'time', 'name', 'phone', 'note', 'consent'] // focus the first error
 
 // Booking modal (CLAUDE.md §6.16): validated form → prefilled WhatsApp message. No backend.
