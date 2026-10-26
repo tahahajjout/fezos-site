@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { bookingRange, firstOpenDate, slotsFor, validateBooking } from './booking.js'
+import { bookingRange, firstOpenDate, openDays, slotsFor, validateBooking } from './booking.js'
 import { bookingMessage, whatsappUrl } from './whatsapp.js'
 
 const at = (iso) => new Date(iso)
@@ -40,4 +40,6 @@ assert.equal(msg, 'Bonjour Fezo’s 🧡 Je souhaite réserver : BIAB — mardi 
 assert.ok(bookingMessage({ serviceName: 'BIAB', date: '2026-10-20', time: '15:00', name: 'Salma' }, 'en').startsWith('Hello Fezo’s 🧡 I would like to book: BIAB — Tuesday 20 October at 15:00.'))
 const url = whatsappUrl('a & b?')
 assert.equal(url, 'https://wa.me/212670853530?text=a%20%26%20b%3F')
+assert.deepEqual(openDays(3, MON_9AM), ['2026-10-19', '2026-10-20', '2026-10-21'])
+assert.deepEqual(openDays(2, at('2026-10-19T19:30:00Z')), ['2026-10-20', '2026-10-21']) // Monday 20:30: today is over
 console.log('booking OK')

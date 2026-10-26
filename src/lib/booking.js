@@ -41,7 +41,17 @@ export function firstOpenDate(date = new Date()) {
   return slotsFor(min, date).length ? min : isoPlus(min, 1)
 }
 
-const NAME = /^[\p{L}][\p{L}\p{M} '’-]{0,49}$/u
+/** The next `n` dates (from today) that still have a free slot — the booking day strip. */
+export function openDays(n, date = new Date()) {
+  const { min, max } = bookingRange(date)
+  const days = []
+  for (let iso = min; iso <= max && days.length < n; iso = isoPlus(iso, 1)) {
+    if (slotsFor(iso, date).length) days.push(iso)
+  }
+  return days
+}
+
+const NAME =/^[\p{L}][\p{L}\p{M} '’-]{0,49}$/u
 
 /** Normalises a phone to digits (drops spaces, dots, dashes, brackets, a leading +). */
 export const cleanPhone = (raw) => raw.replace(/[\s.\-()]/g, '').replace(/^\+/, '')

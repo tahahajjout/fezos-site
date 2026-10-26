@@ -48,6 +48,12 @@
   --duration-micro: 300ms;
   --animate-scroll-cue: scroll-cue 2.4s var(--ease-lux) infinite;
   --animate-nudge: nudge 2s var(--ease-lux) infinite;
+  --animate-tap: tap 1.8s var(--ease-lux) infinite;
+
+  @keyframes tap {
+    0%, 60%, 100% { transform: translateY(0); }
+    25% { transform: translateY(3px); }
+  }
 
   /* transform (not translate) so an RTL-flipped arrow nudges the mirrored way too */
   @keyframes nudge {

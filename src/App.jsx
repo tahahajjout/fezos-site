@@ -50,7 +50,7 @@ export default function App() {
         <Intro />
         <Treatments onSelect={setPriceTab} />
         <Finder onBook={book} />
-        <PriceList tab={priceTab} onTab={setPriceTab} onBook={book} />
+        <PriceList tab={priceTab} onBook={book} />
         <PanoramaTour />
         <Packs onBook={book} />
         <GiftCard />

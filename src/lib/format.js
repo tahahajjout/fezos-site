@@ -32,6 +32,12 @@ export function dayName(day, lang = 'fr') {
   return name.charAt(0).toUpperCase() + name.slice(1)
 }
 
+/** "2026-10-20" → { weekday: 'mar.', day: '20', month: 'oct.' } for a calendar tile. */
+export function dayParts(iso, lang = 'fr') {
+  const part = (opts) => new Intl.DateTimeFormat(localeOf(lang), { ...opts, timeZone: 'UTC' }).format(noonUtc(iso))
+  return { weekday: part({ weekday: 'short' }), day: part({ day: 'numeric' }), month: part({ month: 'short' }) }
+}
+
 /** "2026-10-20" → "mardi 20 octobre" (long) or "20 octobre" (short). */
 export function formatDate(iso, lang = 'fr', { weekday = true } = {}) {
   return new Intl.DateTimeFormat(localeOf(lang), {
