@@ -1,4 +1,4 @@
-import { useId, useRef } from 'react'
+import { useEffect, useId, useRef } from 'react'
 import { useLang } from '../../i18n'
 
 const KEYS = { ArrowRight: 1, ArrowLeft: -1 }
@@ -8,6 +8,11 @@ export function Tabs({ tabs, value, onChange, label, className = '', children })
   const { l, rtl } = useLang()
   const id = useId()
   const refs = useRef([])
+
+  // Keep the selected tab on screen when the row scrolls (e.g. "Packs" preselected on a phone).
+  useEffect(() => {
+    refs.current[tabs.findIndex((tab) => tab.id === value)]?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  }, [value]) // only when the selection changes (callers rebuild `tabs` every render)
 
   function onKeyDown(e, i) {
     let next
@@ -23,7 +28,12 @@ export function Tabs({ tabs, value, onChange, label, className = '', children })
 
   return (
     <div className={className}>
-      <div role="tablist" aria-label={label} className="flex gap-5 overflow-x-auto border-b border-sand sm:gap-8">
+      {/* Phones: the row bleeds into the page gutter (px-6), so a tab cut at the screen edge reads as "scroll for more". */}
+      <div
+        role="tablist"
+        aria-label={label}
+        className="-mx-6 flex gap-5 overflow-x-auto border-b border-sand px-6 [scrollbar-width:none] sm:mx-0 sm:gap-8 sm:px-0 [&::-webkit-scrollbar]:hidden"
+      >
         {tabs.map((tab, i) => {
           const selected = tab.id === value
           return (

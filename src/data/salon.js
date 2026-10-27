@@ -4,6 +4,8 @@
 
 export const salon = {
   name: "Fezo's Beauty Lounge",
+  // The logo's two lines (Latin in every language): splash, header, book cover, footer.
+  wordmark: { name: 'Fezo’s', tagline: 'Beauty Lounge' },
   // Public URL of the site (canonical, hreflang, Open Graph). Change when the real domain is live.
   url: 'https://fezos-site.vercel.app',
   instagram: { handle: '@fezos_beautylounge', url: 'https://www.instagram.com/fezos_beautylounge/' },
@@ -131,7 +133,7 @@ export const serviceCategories = [
     services: [
       {
         id: 'biab',
-        name: { fr: 'BIAB « clean & natural »', en: 'BIAB “clean & natural”', ar: 'BIAB «clean & natural»' },
+        name: { fr: 'BIAB « clean & natural »', en: 'BIAB “clean & natural”', ar: 'BIAB «clean & natural»‎' }, // LRM: keeps the closing » after the Latin name in RTL
         description: {
           fr: 'Renforcement de l’ongle naturel, fini net et discret.',
           en: 'Strengthens the natural nail with a clean, discreet finish.',

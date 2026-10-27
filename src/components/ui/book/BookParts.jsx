@@ -1,4 +1,5 @@
 import { Pointer } from 'lucide-react'
+import { salon } from '../../../data/salon'
 
 const face = 'absolute inset-0 backface-hidden'
 const SIDES = {
@@ -35,8 +36,10 @@ export function CoverFront({ eyebrow, hint }) {
       <span className="absolute inset-4 border border-champagne/40 sm:inset-6" />
       <span className="eyebrow text-champagne">{eyebrow}</span>
       <span className="gold-rule mt-5" />
-      <span className="mt-8 font-display text-display font-light italic leading-none">Fezo’s</span>
-      <span className="mt-4 text-eyebrow font-medium uppercase text-alabaster/70">Beauty Lounge · Fès</span>
+      <span className="mt-8 font-display text-display font-light italic leading-none">{salon.wordmark.name}</span>
+      <span className="mt-4 text-eyebrow font-medium uppercase text-alabaster/70">
+        {salon.wordmark.tagline} · {salon.address.city.fr}
+      </span>
       <span className="mt-auto mb-12 inline-flex items-center gap-3 text-eyebrow font-medium uppercase text-champagne sm:mb-16">
         <Pointer size={18} strokeWidth={1.25} aria-hidden="true" className="animate-tap" />
         {hint}

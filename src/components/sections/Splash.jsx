@@ -1,5 +1,6 @@
 import { m as motion } from 'motion/react'
 import { useEffect } from 'react'
+import { salon } from '../../data/salon'
 import { DURATION, EASE } from '../../lib/motion'
 
 // Seconds the logo holds before the curtain lifts; the hero offsets its entrance by this.
@@ -44,7 +45,7 @@ export function Splash({ onDone }) {
             animate={{ y: 0 }}
             transition={{ duration: DURATION.zoom, ease: EASE, delay: 0.15 }}
           >
-            Fezo’s
+            {salon.wordmark.name}
           </motion.span>
         </span>
         <motion.span
@@ -59,7 +60,7 @@ export function Splash({ onDone }) {
           animate={{ opacity: 1, letterSpacing: '0.25em' }}
           transition={{ duration: DURATION.reveal, ease: EASE, delay: 1 }}
         >
-          Beauty Lounge
+          {salon.wordmark.tagline}
         </motion.span>
       </div>
     </motion.div>

@@ -42,13 +42,12 @@ export function Book({ tab, onBook }) {
   useTurnMotion(turn, { leafRef: turnRef, spread, rtl, onDone: () => (setView(turn.to), setTurn(null)) })
 
   // A treatment card asked for a category: jump there (opening the book if needed).
-  const firstTab = useRef(tab)
   useEffect(() => {
-    if (tab === firstTab.current) return
-    firstTab.current = null
-    setView(viewOfCategory(views, tab))
+    if (!tab) return
+    setTurn(null)
+    setView(viewOfCategory(views, tab.id))
     setPhase((p) => (p === 'closed' ? (prefersReducedMotion() ? 'open' : 'opening') : p))
-  }, [tab, views])
+  }, [tab]) // once per request, not on re-pagination (handled below)
 
   // Desktop ↔ phone re-paginates: stay on the same category.
   const category = useRef(null)

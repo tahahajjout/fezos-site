@@ -74,7 +74,6 @@ export default {
     accent: 'tarifs.',
     body: 'Choisissez un soin pour le réserver : notre équipe vous confirme le créneau sur WhatsApp.',
     question: 'Une question ? WhatsApp',
-    tabs: 'Catégories de soins',
     note: 'Tarifs en dirhams (DH). Durées indicatives.',
     bookSr: 'Réserver : ',
     open: 'Ouvrir la carte',

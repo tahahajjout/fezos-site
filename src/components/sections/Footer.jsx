@@ -59,7 +59,7 @@ export function Footer() {
           aria-hidden="true"
           className="mt-20 select-none font-display text-wordmark font-light italic text-alabaster lg:mt-28"
         >
-          Fezo’s
+          {salon.wordmark.name}
         </p>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-alabaster/15 pt-6 text-meta text-alabaster/60 lg:flex-row lg:justify-between">

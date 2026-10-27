@@ -20,7 +20,6 @@ import { Team } from './components/sections/Team'
 import { Treatments } from './components/sections/Treatments'
 import { Why } from './components/sections/Why'
 import { ScrollProgress } from './components/ui/ScrollProgress'
-import { serviceCategories } from './data/salon'
 import { useLang } from './i18n'
 
 export default function App() {
@@ -28,8 +27,9 @@ export default function App() {
   // { serviceId } while the booking modal is open; every "Réserver" calls book(), optionally with an id.
   const [booking, setBooking] = useState(null)
   const book = (serviceId = null) => setBooking({ serviceId })
-  // Price-list tab lives here so treatment cards can open the right category.
-  const [priceTab, setPriceTab] = useState(serviceCategories[0].id)
+  // A treatment card's request to open the book on a category. A fresh object per click,
+  // so the same category (the first one, or a card clicked twice) still opens the book.
+  const [priceTab, setPriceTab] = useState(null)
   // Decided once on load, so the hero's delay stays fixed after the splash unmounts.
   const [playSplash] = useState(shouldPlaySplash)
   const [splashDone, setSplashDone] = useState(false)
@@ -48,7 +48,7 @@ export default function App() {
         <Hero onBook={book} introDelay={playSplash ? SPLASH_HOLD + 0.3 : 0} />
         <OfferBanner onBook={book} />
         <Intro />
-        <Treatments onSelect={setPriceTab} />
+        <Treatments onSelect={(id) => setPriceTab({ id })} />
         <Finder onBook={book} />
         <PriceList tab={priceTab} onBook={book} />
         <PanoramaTour />

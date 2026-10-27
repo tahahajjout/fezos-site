@@ -73,7 +73,6 @@ export default {
     accent: 'prices.',
     body: 'Choose a treatment to book it: our team confirms your slot on WhatsApp.',
     question: 'A question? WhatsApp',
-    tabs: 'Treatment categories',
     note: 'Prices in Moroccan dirhams (MAD). Durations are approximate.',
     bookSr: 'Book: ',
     open: 'Open the menu',

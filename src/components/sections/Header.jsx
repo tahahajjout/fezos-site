@@ -29,7 +29,7 @@ export function Header({ onBook }) {
           <ul className="flex gap-6 whitespace-nowrap xl:gap-10">
             {nav.map((link) => (
               <li key={link.href}>
-                <TextLink href={link.href} arrow={false}>
+                <TextLink href={link.href} arrow={false} roll>
                   {t(`nav.${link.id}`)}
                 </TextLink>
               </li>
