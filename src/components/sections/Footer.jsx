@@ -9,7 +9,7 @@ export function Footer() {
   const { street, postalCode } = salon.address
   const time = (d, k) => formatTime(hours[d][k], lang)
   return (
-    <footer className="bg-charcoal [&_.eyebrow]:text-champagne pb-[calc(6rem+env(safe-area-inset-bottom))] pt-20 text-alabaster lg:pb-10 lg:pt-28">
+    <footer className="stay-dark bg-charcoal [&_.eyebrow]:text-champagne pb-[calc(6rem+env(safe-area-inset-bottom))] pt-20 text-alabaster lg:pb-10 lg:pt-28">
       <div className="container-site">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           <p className="max-w-[30ch] text-body-l font-light text-alabaster/85 lg:col-span-4">

@@ -31,7 +31,7 @@ export function BlankPage() {
 /** Front of the closed book: leather-dark board, darker spine, gold frame, and the "open me" cue. */
 export function CoverFront({ eyebrow, hint }) {
   return (
-    <div className="relative flex h-full flex-col items-center bg-charcoal-soft px-6 pt-16 text-alabaster sm:pt-24">
+    <div className="relative flex h-full flex-col items-center stay-dark bg-charcoal-soft px-6 pt-16 text-alabaster sm:pt-24">
       <span className="absolute inset-y-0 start-0 w-3 bg-charcoal" />
       <span className="absolute inset-4 border border-champagne/40 sm:inset-6" />
       <span className="eyebrow text-champagne">{eyebrow}</span>

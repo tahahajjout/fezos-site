@@ -53,7 +53,7 @@ export function AppointmentCard({ item, image, date, time, name, compact = false
 
   if (compact) {
     return (
-      <div className="flex items-center gap-4 bg-charcoal px-6 py-4 text-alabaster lg:hidden">
+      <div className="flex items-center gap-4 stay-dark bg-charcoal px-6 py-4 text-alabaster lg:hidden">
         <div className="relative size-14 shrink-0 overflow-hidden bg-charcoal-soft">
           <Photo image={image} sizes="56px" />
         </div>
@@ -77,7 +77,7 @@ export function AppointmentCard({ item, image, date, time, name, compact = false
     [t('booking.forName'), name.trim()],
   ]
   return (
-    <aside aria-label={t('booking.card')} className="relative hidden flex-col bg-charcoal text-alabaster lg:flex">
+    <aside aria-label={t('booking.card')} className="relative hidden flex-col stay-dark bg-charcoal text-alabaster lg:flex">
       {/* opening: the photo wipes down like a curtain and settles */}
       <motion.div
         className="relative h-[46%] overflow-hidden"

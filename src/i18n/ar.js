@@ -17,6 +17,7 @@ export default {
     outOf5: '{n} من 5',
     today: 'اليوم',
     language: 'اللغة',
+    darkMode: 'الوضع الداكن',
   },
   nav: {
     main: 'القائمة الرئيسية',

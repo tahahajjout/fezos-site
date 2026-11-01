@@ -19,7 +19,7 @@ export function Why() {
     <section
       id="pourquoi"
       aria-labelledby="pourquoi-title"
-      className="section-y bg-charcoal text-alabaster [&_.accent]:text-champagne [&_.eyebrow]:text-champagne"
+      className="section-y stay-dark bg-charcoal text-alabaster [&_.accent]:text-champagne [&_.eyebrow]:text-champagne"
     >
       <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-8">
         <Reveal stagger className="lg:col-span-5">

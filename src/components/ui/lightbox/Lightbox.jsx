@@ -85,7 +85,7 @@ export function Lightbox({ items, index, onIndex, onClose, thumbOf }) {
         if (e.key === 'ArrowRight') go(flipDir)
         if (e.key === 'ArrowLeft') go(-flipDir)
       }}
-      className="m-0 h-dvh max-h-none w-full max-w-none overflow-hidden bg-transparent p-0 text-alabaster backdrop:bg-transparent"
+      className="m-0 h-dvh max-h-none w-full max-w-none stay-dark overflow-hidden bg-transparent p-0 text-alabaster backdrop:bg-transparent"
     >
       <motion.div aria-hidden="true" className="absolute inset-0 bg-charcoal" style={{ opacity: veil }} />
       {img && (

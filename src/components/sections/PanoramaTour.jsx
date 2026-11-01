@@ -12,7 +12,7 @@ export function PanoramaTour() {
     <section
       id="visite"
       aria-labelledby="visite-title"
-      className="section-y bg-charcoal text-alabaster [&_.accent]:text-champagne [&_.eyebrow]:text-champagne"
+      className="section-y stay-dark bg-charcoal text-alabaster [&_.accent]:text-champagne [&_.eyebrow]:text-champagne"
     >
       <div className="container-site">
         <Reveal stagger className="grid gap-8 lg:grid-cols-12 lg:items-end">

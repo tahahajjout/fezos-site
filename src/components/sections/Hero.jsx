@@ -38,7 +38,7 @@ export function Hero({ onBook, introDelay = 0 }) {
     <section
       id="top"
       aria-labelledby="hero-title"
-      className="relative isolate flex min-h-svh items-end overflow-hidden bg-charcoal text-alabaster [&_.accent]:text-champagne [&_.eyebrow]:text-champagne"
+      className="stay-dark relative isolate flex min-h-svh items-end overflow-hidden bg-charcoal text-alabaster [&_.accent]:text-champagne [&_.eyebrow]:text-champagne"
     >
       <motion.div
         className="absolute inset-0 -z-10"

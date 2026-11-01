@@ -10,7 +10,7 @@ export function FinalCta({ onBook }) {
   return (
     <section
       aria-labelledby="cta-title"
-      className="relative isolate overflow-hidden bg-charcoal text-alabaster [&_.accent]:text-champagne"
+      className="stay-dark relative isolate overflow-hidden bg-charcoal text-alabaster [&_.accent]:text-champagne"
     >
       <div className="absolute inset-0 -z-10">
         <ImageFrame image={images.finalCta} fill ratio={[16, 9]} mobileRatio={[4, 5]} />

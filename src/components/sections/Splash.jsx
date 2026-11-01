@@ -31,7 +31,7 @@ export function Splash({ onDone }) {
   return (
     <motion.div
       aria-hidden="true"
-      className="fixed inset-0 z-60 flex items-center justify-center bg-charcoal text-alabaster"
+      className="fixed inset-0 z-60 flex items-center justify-center stay-dark bg-charcoal text-alabaster"
       initial={{ y: 0 }}
       animate={{ y: '-100%' }}
       transition={{ duration: DURATION.zoom, ease: EASE, delay: SPLASH_HOLD }}

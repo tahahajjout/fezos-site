@@ -18,9 +18,11 @@ import '@fontsource/noto-sans-arabic/arabic-400.css'
 import '@fontsource/noto-sans-arabic/arabic-500.css'
 import './index.css'
 import App from './App.jsx'
+import { initTheme } from './components/ui/ThemeToggle'
 import { LangProvider } from './i18n'
 import { prefersReducedMotion } from './lib/motion'
 
+initTheme()
 if (!prefersReducedMotion()) import('./lib/smoothScroll').then((m) => m.startSmoothScroll())
 
 createRoot(document.getElementById('root')).render(

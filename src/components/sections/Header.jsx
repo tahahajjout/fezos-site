@@ -8,9 +8,10 @@ import { Container } from '../ui/Container'
 import { LanguageSwitcher } from '../ui/LanguageSwitcher'
 import { Logo } from '../ui/Logo'
 import { TextLink } from '../ui/TextLink'
+import { ThemeToggle } from '../ui/ThemeToggle'
 import { MobileMenu } from './MobileMenu'
 
-// Transparent with light text over the hero; alabaster + blur + hairline once scrolled.
+// Transparent with light text over the hero (in both themes); alabaster + blur + hairline once scrolled.
 export function Header({ onBook }) {
   const { t } = useLang()
   const scrolled = useScrollHeader()
@@ -19,7 +20,7 @@ export function Header({ onBook }) {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 border-b transition-colors duration-500 ease-lux ${
-        scrolled ? 'border-sand bg-alabaster/90 text-charcoal backdrop-blur-md' : 'border-transparent text-alabaster'
+        scrolled ? 'border-sand bg-alabaster/90 text-charcoal backdrop-blur-md' : 'stay-dark border-transparent text-alabaster'
       }`}
     >
       <Container className="flex h-20 items-center justify-between gap-8 lg:h-24">
@@ -38,7 +39,8 @@ export function Header({ onBook }) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <LanguageSwitcher className="me-2 hidden lg:flex" />
+          <LanguageSwitcher className="hidden lg:flex" />
+          <ThemeToggle className="lg:me-2" />
           <div className="hidden sm:block">
             <Button variant={scrolled ? 'solid' : 'ghost-light'} onClick={() => onBook()}>
               {t('common.book')}

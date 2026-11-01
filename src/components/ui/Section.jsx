@@ -4,7 +4,7 @@ import { Container } from './Container'
 const variants = {
   alabaster: 'bg-alabaster text-charcoal',
   linen: 'bg-linen text-charcoal',
-  charcoal: 'bg-charcoal text-alabaster [&_.accent]:text-champagne [&_.eyebrow]:text-champagne',
+  charcoal: 'stay-dark bg-charcoal text-alabaster [&_.accent]:text-champagne [&_.eyebrow]:text-champagne',
 }
 
 export function Section({ id, variant = 'alabaster', className = '', children, ...rest }) {

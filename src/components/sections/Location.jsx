@@ -84,7 +84,7 @@ export function Location() {
             src={salon.mapsEmbed}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="aspect-4/5 h-full w-full bg-linen grayscale sepia-25 lg:aspect-auto lg:min-h-[36rem]"
+            className="aspect-4/5 h-full w-full bg-linen grayscale sepia-25 dark:invert-90 dark:hue-rotate-180 lg:aspect-auto lg:min-h-[36rem]"
           />
         </Reveal>
       </div>

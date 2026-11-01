@@ -1,17 +1,22 @@
 @import "tailwindcss";
 
-@theme {
-  /* Colors — swap --color-champagne* to Fezo's orange (#D9772B) here if the owner prefers */
-  --color-alabaster: #FDFBF7;
-  --color-linen: #F4F1EA;
-  --color-sand: #E9E3D8;
-  --color-charcoal: #1A1A1A;
-  --color-charcoal-soft: #2B2926;
-  --color-stone: #6B655D;
-  --color-champagne: #D4AF37;
-  --color-champagne-deep: #80641D; /* spec said #9C7C2B, which fails AA (3.8:1 on alabaster); this passes on alabaster, linen and champagne-soft */
-  --color-champagne-soft: #F3EAD3;
+/* `dark:` follows the site's toggle (data-theme on <html>), not only the device setting */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
+@theme inline {
+  /* Colors point at the palette below, so the dark theme and `.stay-dark` can swap them */
+  --color-alabaster: var(--alabaster);
+  --color-linen: var(--linen);
+  --color-sand: var(--sand);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-soft: var(--charcoal-soft);
+  --color-stone: var(--stone);
+  --color-champagne: var(--champagne);
+  --color-champagne-deep: var(--champagne-deep);
+  --color-champagne-soft: var(--champagne-soft);
+}
+
+@theme {
   /* Fonts */
   --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
@@ -67,6 +72,42 @@
     50.01% { transform: scaleY(1); transform-origin: bottom; }
     100% { transform: scaleY(0); transform-origin: bottom; }
   }
+}
+
+/* Brand palette — swap --champagne* to Fezo's orange (#D9772B) here if the owner prefers.
+   `.stay-dark` re-declares it, so blocks that are dark by design (hero, charcoal sections, menus,
+   lightbox) look the same in both themes; backdrops always darken. */
+:root, .stay-dark, ::backdrop {
+  --alabaster: #FDFBF7;
+  --linen: #F4F1EA;
+  --sand: #E9E3D8;
+  --charcoal: #1A1A1A;
+  --charcoal-soft: #2B2926;
+  --stone: #6B655D;
+  --champagne: #D4AF37;
+  --champagne-deep: #80641D; /* spec said #9C7C2B, which fails AA (3.8:1 on alabaster); this passes on alabaster, linen and champagne-soft */
+  --champagne-soft: #F3EAD3;
+}
+
+/* Dark theme: light surfaces turn warm dark, ink turns cream, gold text brightens (AA on the dark surfaces).
+   Charcoal sections stay a step darker than the page, so the rhythm survives. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --alabaster: #22201C;
+  --linen: #2A2723;
+  --sand: #403A32;
+  --charcoal: #EDE7DC;
+  --charcoal-soft: #D8CFC0;
+  --stone: #A59D90;
+  --champagne-deep: #CDAA55;
+  --champagne-soft: #2F2819;
+}
+
+/* The theme switch crossfades the whole page (browsers with View Transitions). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.6s;
+  animation-timing-function: var(--ease-lux);
 }
 
 @layer base {

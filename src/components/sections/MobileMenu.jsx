@@ -26,7 +26,7 @@ export function MobileMenu({ open, onClose, onBook }) {
       id="mobile-menu"
       aria-label={t('nav.menu')}
       onClose={onNativeClose(onClose)}
-      className="m-0 h-dvh max-h-none w-full max-w-none bg-charcoal p-0 text-alabaster backdrop:bg-charcoal"
+      className="m-0 h-dvh max-h-none w-full max-w-none stay-dark bg-charcoal p-0 text-alabaster backdrop:bg-charcoal"
     >
       {open && (
         <div className="container-site flex min-h-full flex-col">

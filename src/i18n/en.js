@@ -17,6 +17,7 @@ export default {
     outOf5: '{n} out of 5',
     today: 'today',
     language: 'Language',
+    darkMode: 'Dark mode',
   },
   nav: {
     main: 'Main navigation',
