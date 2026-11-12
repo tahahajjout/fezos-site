@@ -1,6 +1,6 @@
-# Fezo's Beauty Lounge — site vitrine (démo)
+# Beauty Park Fez — site vitrine (démo)
 
-Site one-page pour **Fezo's Beauty Lounge**, salon de beauté à Fès. Vite + React 19, Tailwind CSS v4, Motion, Lucide.
+Site one-page pour **Beauty Park Fez**, centre de bien-être 100 % femmes à Fès. Vite + React 19, Tailwind CSS v4, Motion, Lucide.
 Réservation par WhatsApp (pas de backend). Français, anglais et arabe (RTL).
 
 > **Démo** — non indexée (`noindex` + `robots.txt`) tant que la propriétaire n'a pas validé.
@@ -41,7 +41,7 @@ Chaque texte de `salon.js` existe en trois langues : `{ fr, en, ar }`. `confirme
 provisoire à faire valider (prix, prénoms des avis).
 
 **Panorama 360°** : remplacer `images.panorama` par une vraie photo panoramique du salon et passer `mirror: false`.
-**Couleur d'accent** : `--color-champagne*` dans `src/index.css` (une ligne pour passer à l'orange Fezo's).
+**Couleur d'accent** : `--color-champagne*` dans `src/index.css` (une ligne pour changer l'accent doré).
 
 ## Structure
 

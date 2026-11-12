@@ -201,7 +201,7 @@
 
 /* Arabic: Naskh for display, Noto Sans Arabic for text (Latin glyphs fall back to the brand
    fonts), no letter-spacing (it breaks joined script), taller leading. font-synthesis: none stops
-   faux-italic Arabic while Latin words (Fezo's) keep Cormorant's real italic. */
+   faux-italic Arabic while Latin words (the salon name) keep Cormorant's real italic. */
 html[lang='ar'] {
   font-synthesis: none;
   --font-display: 'Noto Naskh Arabic', 'Cormorant Garamond', ui-serif, Georgia, serif;

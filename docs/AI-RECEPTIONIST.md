@@ -27,7 +27,7 @@ Reply shown in the bubble ◄──────────┘  + a "Réserver" 
    ```bash
    npm i -g vercel
    vercel login
-   vercel link          # pick the existing fezos-site project
+   vercel link          # pick the existing beautypark-fez project
    ```
 3. 👤 **Store the key in Vercel**, then pull it for local dev:
    ```bash

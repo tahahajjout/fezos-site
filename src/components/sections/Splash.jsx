@@ -5,7 +5,7 @@ import { DURATION, EASE } from '../../lib/motion'
 
 // Seconds the logo holds before the curtain lifts; the hero offsets its entrance by this.
 export const SPLASH_HOLD = 2
-const SEEN_KEY = 'fezos-splash-seen'
+const SEEN_KEY = 'splash-seen'
 
 /** Once per browser session, never with reduced motion. React-only, so no-JS visitors never see it. */
 export function shouldPlaySplash() {
@@ -17,7 +17,7 @@ export function shouldPlaySplash() {
   }
 }
 
-// Logo intro: "Fezo's" rises out of a mask, the gold rule draws, "BEAUTY LOUNGE" opens up,
+// Logo intro: the wordmark name rises out of a mask, the gold rule draws, the tagline opens up,
 // then the charcoal curtain lifts onto the hero.
 export function Splash({ onDone }) {
   useEffect(() => {

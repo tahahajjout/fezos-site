@@ -14,7 +14,7 @@ const openDays = WEEK.filter((d) => hours[d])
 const closedDays = WEEK.filter((d) => !hours[d])
 import { Words } from '../ui/Words'
 
-// L'expérience Fezo's — editorial split: statement + picture left (7 cols), text and facts right (4 cols, offset).
+// Intro — editorial split: statement + picture left (7 cols), text and facts right (4 cols, offset).
 export function Intro() {
   const { t, lang } = useLang()
   const titleRef = useScrollWords('focus', { deps: [lang] })

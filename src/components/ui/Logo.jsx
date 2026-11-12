@@ -1,4 +1,4 @@
-// Wordmark: "Fezo's" in Cormorant italic over spaced "BEAUTY LOUNGE". Latin in every language.
+// Wordmark: salon.wordmark.name in Cormorant italic over its spaced tagline. Latin in every language.
 import { salon } from '../../data/salon'
 
 export function Logo({ className = '', ...rest }) {

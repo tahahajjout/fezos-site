@@ -10,7 +10,7 @@ import { Words } from '../ui/Words'
 // The icons a promise can name in salon.js (`promises[].icon`).
 const ICONS = { coffee: Coffee, clock: Clock, footprints: Footprints, droplets: Droplets, flower: Flower2, door: DoorClosed, sparkles: Sparkles, badge: BadgeCheck }
 
-// Pourquoi Fezo's — charcoal. Title left, the four promises as a large-type list right,
+// Why us — charcoal. Title left, the four promises as a large-type list right,
 // then one review line set big across the section as its close.
 export function Why() {
   const { t, l, lang } = useLang()
