@@ -9,7 +9,7 @@ import { TextLink } from '../ui/TextLink'
 export function Team({ onBook }) {
   const { t, l } = useLang()
   return (
-    <section id="equipe" aria-labelledby="equipe-title" className="section-y bg-linen">
+    <section id="equipe" aria-labelledby="equipe-title" className="section-y bg-linen/50">
       <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-8">
         <Reveal stagger className="lg:col-span-4">
           <RevealItem>

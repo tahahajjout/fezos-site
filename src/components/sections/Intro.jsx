@@ -3,11 +3,15 @@ import { images } from '../../data/images'
 import { hours, salon } from '../../data/salon'
 import { useScrollWords } from '../../hooks/useScrollWords'
 import { useLang } from '../../i18n'
-import { formatTime } from '../../lib/format'
+import { dayName, formatTime } from '../../lib/format'
 import { Eyebrow } from '../ui/Eyebrow'
 import { ImageFrame } from '../ui/ImageFrame'
 import { Reveal, RevealItem } from '../ui/Reveal'
 import { SectionTitle } from '../ui/SectionTitle'
+
+const WEEK = [1, 2, 3, 4, 5, 6, 0] // Monday first
+const openDays = WEEK.filter((d) => hours[d])
+const closedDays = WEEK.filter((d) => !hours[d])
 import { Words } from '../ui/Words'
 
 // L'expérience Fezo's — editorial split: statement + picture left (7 cols), text and facts right (4 cols, offset).
@@ -24,11 +28,17 @@ export function Intro() {
       ),
       label: t('intro.ratingLabel', { n: salon.rating.count }),
     },
-    { value: t('intro.daysValue'), label: t('intro.daysLabel', { time: formatTime(hours[1].open, lang) }) },
-    { value: t('intro.cafeValue'), label: t('intro.cafeLabel') },
+    {
+      value: t('intro.daysValue', { n: openDays.length }),
+      label: t(openDays.length === 7 ? 'intro.daysLabel' : 'intro.daysLabelClosed', {
+        time: formatTime(hours[openDays[0]].open, lang),
+        closed: closedDays.map((d) => (lang === 'en' ? dayName(d, lang) : dayName(d, lang).toLowerCase())).join(', '),
+      }),
+    },
+    { value: t('intro.perkValue'), label: t('intro.perkLabel') },
   ]
   return (
-    <section id="experience" aria-labelledby="experience-title" className="section-y bg-alabaster">
+    <section id="experience" aria-labelledby="experience-title" className="section-y bg-alabaster/40">
       <Reveal stagger className="container-site grid gap-12 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
         <RevealItem className="lg:col-span-7">
           <Eyebrow>{t('intro.eyebrow')}</Eyebrow>

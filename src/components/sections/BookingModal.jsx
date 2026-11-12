@@ -7,13 +7,13 @@ import { BookingFlow } from './booking/BookingFlow'
 // Both animate out too: CSS transitions on `display`/`overlay` (transition-discrete) keep the
 // closing dialog painted, and the last booking stays rendered inside it until it is gone.
 const shell = [
-  'fixed inset-x-0 top-auto bottom-0 m-0 h-[94svh] max-h-none w-full max-w-none overflow-hidden bg-alabaster p-0 text-charcoal shadow-modal',
+  'fixed inset-x-0 top-auto bottom-0 m-0 h-[94svh] max-h-none w-full max-w-none overflow-hidden bg-alabaster/85 p-0 text-charcoal shadow-modal backdrop-blur-2xl',
   'lg:inset-0 lg:m-auto lg:h-[min(48rem,calc(100svh-4rem))] lg:w-[min(76rem,calc(100%-4rem))]',
   'transition-[translate,opacity,display,overlay] transition-discrete duration-700 ease-lux',
   'translate-y-full open:translate-y-0 starting:open:translate-y-full',
   'lg:translate-y-10 lg:opacity-0 lg:open:translate-y-0 lg:open:opacity-100 lg:starting:open:translate-y-10 lg:starting:open:opacity-0',
   'backdrop:bg-charcoal/0 backdrop:transition-[background-color,display,overlay] backdrop:transition-discrete backdrop:duration-700',
-  'open:backdrop:bg-charcoal/70 starting:open:backdrop:bg-charcoal/0',
+  'open:backdrop:bg-charcoal/45 starting:open:backdrop:bg-charcoal/0',
 ].join(' ')
 
 export function BookingModal({ booking, onClose }) {

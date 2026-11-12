@@ -1,94 +1,93 @@
 // Single source of truth for business content. Edit here, not in components.
 // Text fields are { fr, en, ar }; FR is the default and the fallback.
 // `confirmed: false` = placeholder to validate with the owner (CLAUDE.md §17).
+// Sources (Nov 2026): Google Maps listing, Facebook "À propos", Instagram @beautyparkfez.
 
 export const salon = {
-  name: "Fezo's Beauty Lounge",
+  name: 'Beauty Park Fez',
   // The logo's two lines (Latin in every language): splash, header, book cover, footer.
-  wordmark: { name: 'Fezo’s', tagline: 'Beauty Lounge' },
+  // "The Art of Beauty" is the salon's own line (Facebook).
+  wordmark: { name: 'Beauty Park', tagline: 'The Art of Beauty' },
   // Public URL of the site (canonical, hreflang, Open Graph). Change when the real domain is live.
-  url: 'https://fezos-site.vercel.app',
-  instagram: { handle: '@fezos_beautylounge', url: 'https://www.instagram.com/fezos_beautylounge/' },
-  phone: { display: '06 70 85 35 30', tel: '+212670853530' },
-  whatsapp: '212670853530', // wa.me number, no "+"
+  url: 'https://beautypark-fez.vercel.app',
+  instagram: { handle: '@beautyparkfez', url: 'https://www.instagram.com/beautyparkfez/' },
+  phone: { display: '05 35 65 27 87', tel: '+212535652787' },
+  // The mobile listed for bookings in the Instagram bio — confirm it is the salon's WhatsApp.
+  whatsapp: '212661246105', // wa.me number, no "+"
   address: {
-    street: 'Blad Tazi, Champs de Course, n°22 lotissement',
+    street: 'Rue Lalla Nezha, Ville Nouvelle',
     city: { fr: 'Fès', en: 'Fès', ar: 'فاس' },
-    postalCode: '30000',
+    postalCode: '30050',
     country: 'MA',
   },
-  geo: { lat: 34.0377896, lng: -5.0162399 },
-  mapsUrl: 'https://maps.app.goo.gl/Sid9PLjydTBSJF73A',
-  mapsEmbed: 'https://maps.google.com/maps?q=34.0377896,-5.0162399&z=16&output=embed',
-  rating: { value: 4.9, count: 29 },
+  geo: { lat: 34.035528, lng: -5.0072277 },
+  mapsUrl: 'https://maps.google.com/?cid=5828499719354901220',
+  mapsEmbed: 'https://maps.google.com/maps?q=34.035528,-5.0072277&z=16&output=embed',
+  rating: { value: 4.5, count: 99 },
   timeZone: 'Africa/Casablanca',
 }
 
-// Index = Date#getDay() (0 = Sunday). Times are "HH:MM" in salon.timeZone. Day names come from Intl.
+// Index = Date#getDay() (0 = Sunday). Times are "HH:MM" in salon.timeZone; null = closed.
 export const hours = [
-  { open: '10:30', close: '20:00' },
-  { open: '10:30', close: '20:30' },
-  { open: '10:30', close: '20:00' },
-  { open: '10:30', close: '20:00' },
-  { open: '10:30', close: '20:00' },
-  { open: '10:30', close: '20:00' },
-  { open: '10:30', close: '20:00' },
+  { open: '10:00', close: '20:00' },
+  null,
+  { open: '10:00', close: '20:00' },
+  { open: '10:00', close: '20:00' },
+  { open: '10:00', close: '20:00' },
+  { open: '10:00', close: '20:00' },
+  { open: '10:00', close: '20:00' },
 ]
 
 // Price list, grouped by tab. price: number (DH) | null → "on request". duration: minutes | null.
+// Services come from the salon's Instagram highlights and Google reviews; prices are placeholders
+// except where a review quoted one (still to confirm).
 export const serviceCategories = [
   {
-    id: 'coiffure',
-    label: { fr: 'Coiffure', en: 'Hair', ar: 'الشعر' },
+    id: 'hammam',
+    label: { fr: 'Hammam & Massage', en: 'Hammam & Massage', ar: 'الحمام والتدليك' },
     services: [
       {
-        id: 'lissage-bresilien',
-        name: { fr: 'Lissage brésilien', en: 'Brazilian straightening', ar: 'تمليس برازيلي' },
+        id: 'hammam-traditionnel',
+        name: { fr: 'Hammam traditionnel', en: 'Traditional hammam', ar: 'حمام تقليدي' },
         description: {
-          fr: 'Sans formol ni acide glyoxylique — protéines, filler et vitamines.',
-          en: 'No formaldehyde, no glyoxylic acid — proteins, filler and vitamins.',
-          ar: 'بدون فورمول ولا حمض الغليوكسيليك، بالبروتينات والفيلر والفيتامينات.',
+          fr: 'Savon noir et gommage au kessa, en cabine individuelle.',
+          en: 'Black soap and kessa scrub, in a private room.',
+          ar: 'صابون بلدي وتقشير بالكيس، في غرفة خاصة.',
         },
-        duration: 180,
-        price: 780,
-        confirmed: true,
-      },
-      {
-        id: 'lissage-pro-filler',
-        name: { fr: 'Lissage Pro Filler', en: 'Pro Filler straightening', ar: 'تمليس برو فيلر' },
-        description: {
-          fr: 'Comble la fibre, brillance et discipline durables.',
-          en: 'Fills the hair fibre for lasting shine and smoothness.',
-          ar: 'يملأ ألياف الشعر للمعان ونعومة تدوم.',
-        },
-        duration: 150,
-        price: 900,
+        duration: 60,
+        price: 120,
         confirmed: false,
       },
       {
-        id: 'soin-boucles',
-        name: { fr: 'Soin hydratant boucles — Soin21', en: 'Curl hydration ritual — Soin21', ar: 'علاج ترطيب الشعر المجعد — Soin21' },
+        id: 'hammam-rituel',
+        name: { fr: 'Hammam rituel', en: 'Hammam ritual', ar: 'طقس الحمام' },
         description: {
-          fr: 'Hydratation intense et définition des boucles.',
-          en: 'Deep hydration and defined curls.',
-          ar: 'ترطيب عميق وتحديد للتموجات.',
+          fr: 'Savon noir, gommage et enveloppement au rhassoul pour une peau de soie.',
+          en: 'Black soap, scrub and a rhassoul wrap for silky skin.',
+          ar: 'صابون بلدي وتقشير ولفافة الغاسول لبشرة حريرية.',
+        },
+        duration: 90,
+        price: 200,
+        confirmed: false,
+      },
+      {
+        id: 'massage-relaxant',
+        name: { fr: 'Massage relaxant', en: 'Relaxing massage', ar: 'تدليك للاسترخاء' },
+        description: {
+          fr: 'Un massage du corps aux huiles pour relâcher les tensions.',
+          en: 'A full-body oil massage to release tension.',
+          ar: 'تدليك للجسم بالزيوت لإزالة التوتر.',
         },
         duration: 60,
         price: 250,
         confirmed: false,
       },
-      {
-        id: 'soin-apres-ete',
-        name: { fr: 'Soin réparateur après l’été', en: 'After-summer repair treatment', ar: 'علاج إصلاحي بعد الصيف' },
-        description: {
-          fr: 'Répare les longueurs abîmées par le sel, le chlore et le soleil.',
-          en: 'Repairs lengths damaged by salt, chlorine and sun.',
-          ar: 'يصلح أطراف الشعر المتضررة من الملح والكلور والشمس.',
-        },
-        duration: 45,
-        price: 200,
-        confirmed: false,
-      },
+    ],
+  },
+  {
+    id: 'coiffure',
+    label: { fr: 'Coiffure', en: 'Hair', ar: 'الشعر' },
+    services: [
       {
         id: 'brushing',
         name: { fr: 'Brushing', en: 'Blow-dry', ar: 'براشينغ' },
@@ -98,28 +97,52 @@ export const serviceCategories = [
           ar: 'أملس أو مموج أو بحجم، حسب رغبتك.',
         },
         duration: 45,
-        price: 100,
+        price: 80,
         confirmed: false,
       },
       {
-        id: 'tresses',
-        name: { fr: 'Tresses', en: 'Braids', ar: 'ضفائر' },
+        id: 'balayage',
+        name: { fr: 'Balayage', en: 'Balayage', ar: 'بالياج' },
         description: {
-          fr: 'Tresses classiques ou bohèmes.',
-          en: 'Classic or bohemian braids.',
-          ar: 'ضفائر كلاسيكية أو بوهيمية.',
+          fr: 'Des reflets lumineux et naturels, posés à main levée.',
+          en: 'Natural, luminous highlights, painted by hand.',
+          ar: 'خصلات مضيئة وطبيعية بلمسة يدوية.',
         },
-        duration: 60,
-        price: 150,
+        duration: 180,
+        price: null,
         confirmed: false,
       },
       {
-        id: 'chignon-invitee',
-        name: { fr: 'Chignon invitée', en: 'Wedding guest updo', ar: 'تسريحة شينيون للمدعوات' },
+        id: 'coloration',
+        name: { fr: 'Coloration', en: 'Colour', ar: 'صباغة' },
         description: {
-          fr: 'Coiffure de cérémonie pour mariages et fêtes.',
-          en: 'Occasion hair for weddings and celebrations.',
-          ar: 'تسريحة للمناسبات والأعراس والحفلات.',
+          fr: 'Une couleur uniforme et brillante, des racines aux pointes.',
+          en: 'Even, glossy colour from roots to ends.',
+          ar: 'لون موحد ولامع من الجذور إلى الأطراف.',
+        },
+        duration: 120,
+        price: 300,
+        confirmed: false,
+      },
+      {
+        id: 'botox-capillaire',
+        name: { fr: 'Botox capillaire naturel', en: 'Natural hair botox', ar: 'بوتوكس طبيعي للشعر' },
+        description: {
+          fr: 'Répare la fibre et rend aux longueurs leur brillance.',
+          en: 'Repairs the fibre and brings back shine to the lengths.',
+          ar: 'يصلح ألياف الشعر ويعيد اللمعان إلى الأطراف.',
+        },
+        duration: 120,
+        price: 500,
+        confirmed: false,
+      },
+      {
+        id: 'coiffure-soiree',
+        name: { fr: 'Coiffure de soirée', en: 'Occasion hair', ar: 'تسريحة السهرة' },
+        description: {
+          fr: 'Chignon ou ondulations pour un mariage ou une fête.',
+          en: 'An updo or waves for a wedding or a celebration.',
+          ar: 'شينيون أو تموجات لعرس أو حفل.',
         },
         duration: 60,
         price: null,
@@ -129,20 +152,8 @@ export const serviceCategories = [
   },
   {
     id: 'onglerie',
-    label: { fr: 'Onglerie', en: 'Nails', ar: 'الأظافر' },
+    label: { fr: 'Ongles', en: 'Nails', ar: 'الأظافر' },
     services: [
-      {
-        id: 'biab',
-        name: { fr: 'BIAB « clean & natural »', en: 'BIAB “clean & natural”', ar: 'BIAB «clean & natural»‎' }, // LRM: keeps the closing » after the Latin name in RTL
-        description: {
-          fr: 'Renforcement de l’ongle naturel, fini net et discret.',
-          en: 'Strengthens the natural nail with a clean, discreet finish.',
-          ar: 'تقوية الظفر الطبيعي بلمسة نظيفة وناعمة.',
-        },
-        duration: 75,
-        price: 250,
-        confirmed: false,
-      },
       {
         id: 'manucure',
         name: { fr: 'Manucure', en: 'Manicure', ar: 'مانيكير' },
@@ -152,73 +163,85 @@ export const serviceCategories = [
           ar: 'عناية بالجلد المحيط، برد وطلاء، لأيدٍ أنيقة.',
         },
         duration: 45,
+        price: 100,
+        confirmed: false,
+      },
+      {
+        id: 'pedicure',
+        name: { fr: 'Pédicure', en: 'Pedicure', ar: 'باديكير' },
+        description: {
+          fr: 'Un vrai moment de détente, sans se presser.',
+          en: 'A truly relaxing moment, never rushed.',
+          ar: 'لحظة استرخاء حقيقية، دون استعجال.',
+        },
+        duration: 60,
+        price: 150,
+        confirmed: false,
+      },
+      {
+        id: 'semi-permanent',
+        name: { fr: 'Vernis semi-permanent', en: 'Gel polish', ar: 'طلاء شبه دائم' },
+        description: {
+          fr: 'Une couleur nette qui tient plusieurs semaines.',
+          en: 'Clean colour that lasts for weeks.',
+          ar: 'لون أنيق يدوم لأسابيع.',
+        },
+        duration: 60,
         price: 120,
         confirmed: false,
       },
       {
-        id: 'pose',
-        name: { fr: 'Pose', en: 'Nail extensions', ar: 'تركيب الأظافر' },
+        id: 'capsules',
+        name: { fr: 'Pose de capsules', en: 'Nail tips', ar: 'تركيب الكبسولات' },
         description: {
-          fr: 'Gel ou capsules, forme et longueur sur mesure.',
-          en: 'Gel or tips, shape and length made to measure.',
-          ar: 'جل أو كبسولات، بالشكل والطول الذي تختارينه.',
+          fr: 'Forme et longueur sur mesure.',
+          en: 'Shape and length made to measure.',
+          ar: 'بالشكل والطول الذي تختارينه.',
         },
         duration: 90,
-        price: 300,
-        confirmed: false,
-      },
-      {
-        id: 'pedicure-medicale',
-        name: { fr: 'Pédicure médicale', en: 'Medical pedicure', ar: 'باديكير طبي' },
-        description: {
-          fr: 'Gamme Eucalyptus PN Pronails — massage des pieds inclus.',
-          en: 'PN Pronails Eucalyptus range — foot massage included.',
-          ar: 'مجموعة Eucalyptus من PN Pronails، مع تدليك القدمين.',
-        },
-        duration: 60,
-        price: 250,
+        price: 220, // quoted in a Google review
         confirmed: false,
       },
     ],
   },
   {
     id: 'visage',
-    label: { fr: 'Visage & Regard', en: 'Face & Eyes', ar: 'الوجه والنظرة' },
+    label: { fr: 'Visage & Maquillage', en: 'Face & Make-up', ar: 'الوجه والمكياج' },
     services: [
       {
-        id: 'hydrafacial',
-        name: { fr: 'Hydrafacial', en: 'Hydrafacial', ar: 'هيدرافيشل' },
+        id: 'soin-visage',
+        name: { fr: 'Soin du visage', en: 'Facial', ar: 'علاج الوجه' },
         description: {
-          fr: 'Nettoie, exfolie et hydrate en profondeur — éclat immédiat.',
-          en: 'Deep cleanse, exfoliation and hydration — instant glow.',
-          ar: 'تنظيف وتقشير وترطيب عميق لإشراقة فورية.',
+          fr: 'Nettoyage, gommage et masque, pour un teint frais et lumineux.',
+          en: 'Cleanse, exfoliation and mask for a fresh, glowing complexion.',
+          ar: 'تنظيف وتقشير وقناع لبشرة نضرة ومشرقة.',
         },
         duration: 60,
-        price: 600,
+        price: 300,
         confirmed: false,
       },
       {
-        id: 'brow-lift',
-        name: { fr: 'Brow Lift', en: 'Brow Lift', ar: 'رفع الحواجب' },
+        id: 'maquillage',
+        name: { fr: 'Maquillage', en: 'Make-up', ar: 'مكياج' },
         description: {
-          fr: 'Sourcils restructurés et disciplinés pour plusieurs semaines.',
-          en: 'Reshaped, groomed brows that last for weeks.',
-          ar: 'حواجب منظمة ومرتبة لعدة أسابيع.',
+          fr: 'Un maquillage soirée ou naturel, adapté à votre teint.',
+          en: 'Evening or natural make-up, matched to your skin.',
+          ar: 'مكياج سهرة أو طبيعي يناسب بشرتك.',
         },
-        duration: 45,
-        price: 250,
+        duration: 60,
+        price: 300,
         confirmed: false,
       },
       {
-        id: 'lash-lift',
-        name: { fr: 'Lash Lift', en: 'Lash Lift', ar: 'رفع الرموش' },
+        id: 'epilation',
+        name: { fr: 'Épilation', en: 'Waxing', ar: 'إزالة الشعر' },
         description: {
-          fr: 'Recourbe et sublime vos cils naturels.',
-          en: 'Curls and enhances your natural lashes.',
-          ar: 'يرفع رموشك الطبيعية ويبرزها.',
+          fr: 'Visage ou corps, selon les zones.',
+          en: 'Face or body, by area.',
+          ar: 'للوجه أو الجسم، حسب المنطقة.',
         },
-        duration: 60,
-        price: 250,
+        duration: 30,
+        price: null,
         confirmed: false,
       },
     ],
@@ -228,49 +251,49 @@ export const serviceCategories = [
 // The 4 numbered cards of "Nos soins". `category` links to the price-list tab.
 export const treatments = [
   {
-    id: 'coiffure',
+    id: 'hammam',
     number: '01',
-    title: { fr: 'Coiffure & Lissages', en: 'Hair & Straightening', ar: 'تصفيف وتمليس الشعر' },
+    title: { fr: 'Hammam & Massage', en: 'Hammam & Massage', ar: 'الحمام والتدليك' },
     description: {
-      fr: 'Lissages sans formol, soins réparateurs et brushings signature.',
-      en: 'Formaldehyde-free straightening, repair rituals and signature blow-dries.',
-      ar: 'تمليس بدون فورمول، علاجات إصلاحية وبراشينغ مميز.',
+      fr: 'Savon noir, gommage au kessa et massages, en cabine individuelle.',
+      en: 'Black soap, kessa scrub and massages, in a private room.',
+      ar: 'صابون بلدي وتقشير بالكيس وتدليك، في غرفة خاصة.',
+    },
+    category: 'hammam',
+    image: 'hammam',
+  },
+  {
+    id: 'coiffure',
+    number: '02',
+    title: { fr: 'Coiffure & Couleur', en: 'Hair & Colour', ar: 'تصفيف وصباغة الشعر' },
+    description: {
+      fr: 'Brushings, balayages, colorations et soins réparateurs.',
+      en: 'Blow-dries, balayage, colour and repair treatments.',
+      ar: 'براشينغ وبالياج وصباغة وعلاجات إصلاحية.',
     },
     category: 'coiffure',
     image: 'coiffure',
   },
   {
     id: 'onglerie',
-    number: '02',
-    title: { fr: 'Onglerie', en: 'Nails', ar: 'الأظافر' },
+    number: '03',
+    title: { fr: 'Ongles', en: 'Nails', ar: 'الأظافر' },
     description: {
-      fr: 'BIAB, manucure et poses, dans l’esprit « clean & natural ».',
-      en: 'BIAB, manicures and extensions, in a “clean & natural” spirit.',
-      ar: 'BIAB ومانيكير وتركيب، بروح «clean & natural».',
+      fr: 'Manucure, pédicure, semi-permanent et capsules.',
+      en: 'Manicure, pedicure, gel polish and tips.',
+      ar: 'مانيكير وباديكير وطلاء شبه دائم وكبسولات.',
     },
     category: 'onglerie',
     image: 'onglerie',
   },
   {
-    id: 'pedicure',
-    number: '03',
-    title: { fr: 'Pédicure médicale', en: 'Medical pedicure', ar: 'باديكير طبي' },
-    description: {
-      fr: 'En partenariat avec PN Pronails, massage des pieds inclus.',
-      en: 'In partnership with PN Pronails, foot massage included.',
-      ar: 'بشراكة مع PN Pronails، مع تدليك القدمين.',
-    },
-    category: 'onglerie',
-    image: 'pedicure',
-  },
-  {
     id: 'visage',
     number: '04',
-    title: { fr: 'Visage & Regard', en: 'Face & Eyes', ar: 'الوجه والنظرة' },
+    title: { fr: 'Visage & Maquillage', en: 'Face & Make-up', ar: 'الوجه والمكياج' },
     description: {
-      fr: 'Hydrafacial, Brow Lift et Lash Lift pour un regard éclatant.',
-      en: 'Hydrafacial, Brow Lift and Lash Lift for a radiant look.',
-      ar: 'هيدرافيشل ورفع الحواجب والرموش لنظرة مشرقة.',
+      fr: 'Soins du visage, maquillage et épilation.',
+      en: 'Facials, make-up and waxing.',
+      ar: 'علاجات الوجه والمكياج وإزالة الشعر.',
     },
     category: 'visage',
     image: 'visage',
@@ -283,88 +306,88 @@ export const packs = [
     number: '01',
     name: { fr: 'Pack Mariée', en: 'Bridal pack', ar: 'باقة العروس' },
     description: {
-      fr: 'Coiffure, mise en beauté des mains et pieds, pour le grand jour.',
-      en: 'Hair, hands and feet, ready for the big day.',
-      ar: 'تسريحة وعناية باليدين والقدمين، ليومك الكبير.',
+      fr: 'Le hammam de la mariée, puis maquillage et coiffure pour le grand jour.',
+      en: 'The bride’s hammam, then make-up and hair for the big day.',
+      ar: 'حمام العروس، ثم المكياج والتسريحة ليومك الكبير.',
     },
-    price: 1500,
+    price: null,
     confirmed: false,
     image: 'mariee',
   },
   {
-    id: 'mains-pieds',
+    id: 'detente',
     number: '02',
+    name: { fr: 'Pack Détente', en: 'Unwind pack', ar: 'باقة الاسترخاء' },
+    description: {
+      fr: 'Hammam, massage et brushing, en un seul rendez-vous.',
+      en: 'Hammam, massage and blow-dry, in a single visit.',
+      ar: 'حمام وتدليك وبراشينغ، في موعد واحد.',
+    },
+    price: 230, // the promo price quoted in a Google review
+    confirmed: false,
+    image: 'detente',
+  },
+  {
+    id: 'mains-pieds',
+    number: '03',
     name: { fr: 'Pack Mains & Pieds', en: 'Hands & Feet pack', ar: 'باقة اليدين والقدمين' },
     description: {
-      fr: 'Manucure et pédicure médicale, massage des pieds offert.',
-      en: 'Manicure and medical pedicure, foot massage included.',
-      ar: 'مانيكير وباديكير طبي، مع تدليك القدمين هدية.',
+      fr: 'Manucure et pédicure, pour des mains et des pieds soignés.',
+      en: 'Manicure and pedicure, for well-cared-for hands and feet.',
+      ar: 'مانيكير وباديكير، ليدين وقدمين بأبهى حلة.',
     },
-    price: 330,
+    price: 220,
     confirmed: false,
     image: 'mainsPieds',
   },
   {
     id: 'eclat',
-    number: '03',
-    name: { fr: 'Pack Éclat Visage', en: 'Radiant Face pack', ar: 'باقة إشراقة الوجه' },
+    number: '04',
+    name: { fr: 'Pack Éclat', en: 'Glow pack', ar: 'باقة الإشراقة' },
     description: {
-      fr: 'Hydrafacial suivi d’un Brow Lift pour un visage lumineux.',
-      en: 'Hydrafacial followed by a Brow Lift for a luminous face.',
-      ar: 'هيدرافيشل يليه رفع الحواجب لوجه مشرق.',
+      fr: 'Soin du visage suivi d’un maquillage, pour briller à votre soirée.',
+      en: 'A facial followed by make-up, to shine at your evening out.',
+      ar: 'علاج للوجه يليه مكياج، لتتألقي في سهرتك.',
     },
-    price: 780,
+    price: 500,
     confirmed: false,
     image: 'eclat',
-  },
-  {
-    id: 'rentree',
-    number: '04',
-    name: { fr: 'Pack Rentrée', en: 'Back-to-routine pack', ar: 'باقة الدخول' },
-    description: {
-      fr: 'Soin réparateur après l’été, brushing et manucure.',
-      en: 'After-summer repair treatment, blow-dry and manicure.',
-      ar: 'علاج إصلاحي بعد الصيف، براشينغ ومانيكير.',
-    },
-    price: 380,
-    confirmed: false,
-    image: 'rentree',
   },
 ]
 
 // "Trouver mon soin": step 1 picks an area, step 2 a wish; each wish points to a bookable id (service or pack).
 export const finder = [
   {
+    id: 'detente',
+    image: 'hammam', // images.treatments key
+    label: { fr: 'Me détendre', en: 'Unwind', ar: 'الاسترخاء' },
+    wishes: [
+      { serviceId: 'hammam-traditionnel', label: { fr: 'Un vrai hammam marocain', en: 'A true Moroccan hammam', ar: 'حمام مغربي أصيل' } },
+      { serviceId: 'hammam-rituel', label: { fr: 'Une peau douce et purifiée', en: 'Soft, purified skin', ar: 'بشرة ناعمة ونقية' } },
+      { serviceId: 'massage-relaxant', label: { fr: 'Relâcher les tensions', en: 'Release tension', ar: 'التخلص من التوتر' } },
+      { serviceId: 'detente', label: { fr: 'Tout, en un seul rendez-vous', en: 'Everything, in one visit', ar: 'كل شيء في موعد واحد' } },
+    ],
+  },
+  {
     id: 'cheveux',
     image: 'coiffure', // images.treatments key
     label: { fr: 'Mes cheveux', en: 'My hair', ar: 'شعري' },
     wishes: [
-      { serviceId: 'lissage-bresilien', label: { fr: 'Des cheveux lisses et disciplinés', en: 'Smooth, frizz-free hair', ar: 'شعر أملس ومنضبط' } },
-      { serviceId: 'soin-apres-ete', label: { fr: 'Réparer mes longueurs après l’été', en: 'Repair my lengths after summer', ar: 'إصلاح أطراف شعري بعد الصيف' } },
-      { serviceId: 'soin-boucles', label: { fr: 'Des boucles hydratées et définies', en: 'Hydrated, defined curls', ar: 'تموجات مرطبة ومحددة' } },
-      { serviceId: 'chignon-invitee', label: { fr: 'Une coiffure pour un mariage', en: 'Hair for a wedding', ar: 'تسريحة لحفل زفاف' } },
+      { serviceId: 'brushing', label: { fr: 'Un brushing impeccable', en: 'A flawless blow-dry', ar: 'براشينغ مثالي' } },
+      { serviceId: 'balayage', label: { fr: 'Des reflets lumineux', en: 'Luminous highlights', ar: 'خصلات مضيئة' } },
+      { serviceId: 'botox-capillaire', label: { fr: 'Des cheveux réparés et brillants', en: 'Repaired, shiny hair', ar: 'شعر مُصلَح ولامع' } },
+      { serviceId: 'coiffure-soiree', label: { fr: 'Une coiffure pour une fête', en: 'Hair for a celebration', ar: 'تسريحة لحفل' } },
     ],
   },
   {
-    id: 'mains',
-    image: 'onglerie', // images.treatments key
-    label: { fr: 'Mes mains & pieds', en: 'My hands & feet', ar: 'يداي وقدماي' },
-    wishes: [
-      { serviceId: 'biab', label: { fr: 'Des ongles naturels et solides', en: 'Strong, natural nails', ar: 'أظافر طبيعية وقوية' } },
-      { serviceId: 'pose', label: { fr: 'Des ongles longs, sur mesure', en: 'Long, made-to-measure nails', ar: 'أظافر طويلة حسب الرغبة' } },
-      { serviceId: 'pedicure-medicale', label: { fr: 'Des pieds soignés en profondeur', en: 'Deep care for my feet', ar: 'عناية عميقة بقدمي' } },
-      { serviceId: 'mains-pieds', label: { fr: 'Tout, en un seul rendez-vous', en: 'Everything, in one visit', ar: 'كل شيء في موعد واحد' } },
-    ],
-  },
-  {
-    id: 'visage',
+    id: 'beaute',
     image: 'visage', // images.treatments key
-    label: { fr: 'Mon visage & regard', en: 'My face & eyes', ar: 'وجهي ونظرتي' },
+    label: { fr: 'Ma beauté', en: 'My beauty', ar: 'جمالي' },
     wishes: [
-      { serviceId: 'hydrafacial', label: { fr: 'Un teint éclatant', en: 'A radiant complexion', ar: 'بشرة مشرقة' } },
-      { serviceId: 'brow-lift', label: { fr: 'Des sourcils structurés', en: 'Defined brows', ar: 'حواجب محددة' } },
-      { serviceId: 'lash-lift', label: { fr: 'Des cils recourbés', en: 'Lifted lashes', ar: 'رموش مرفوعة' } },
-      { serviceId: 'eclat', label: { fr: 'Un rituel complet', en: 'A complete ritual', ar: 'طقس متكامل' } },
+      { serviceId: 'soin-visage', label: { fr: 'Un teint éclatant', en: 'A radiant complexion', ar: 'بشرة مشرقة' } },
+      { serviceId: 'maquillage', label: { fr: 'Un maquillage pour un événement', en: 'Make-up for an event', ar: 'مكياج لمناسبة' } },
+      { serviceId: 'capsules', label: { fr: 'Des ongles longs', en: 'Long nails', ar: 'أظافر طويلة' } },
+      { serviceId: 'mains-pieds', label: { fr: 'Des mains et des pieds soignés', en: 'Cared-for hands and feet', ar: 'يدان وقدمان بعناية' } },
     ],
   },
 ]
@@ -372,77 +395,94 @@ export const finder = [
 // Team members named in Google reviews. Typographic cards, no portraits until the salon sends real photos.
 export const team = [
   {
-    id: 'fatima-zohra',
-    name: 'Lala Fatima Zohra',
-    role: { fr: 'Accueil & conseil', en: 'Welcome & advice', ar: 'الاستقبال والنصيحة' },
+    id: 'latifa',
+    name: 'Latifa',
+    role: { fr: 'Fondatrice & accueil', en: 'Founder & welcome', ar: 'المؤسسة والاستقبال' },
     text: {
-      fr: 'Elle vous reçoit avec le café, prend le temps de vous écouter et vous oriente vers le soin qui vous ressemble.',
-      en: 'She welcomes you with a coffee, takes time to listen and guides you to the treatment that suits you.',
-      ar: 'تستقبلك بالقهوة، وتأخذ وقتها للإصغاء إليك، وترشدك إلى العلاج الذي يناسبك.',
+      fr: 'Nos clientes la décrivent adorable et toujours à l’écoute : elle veille à ce que chacune reparte comblée.',
+      en: 'Clients describe her as lovely and always listening: she makes sure every woman leaves delighted.',
+      ar: 'تصفها زبوناتنا بالرائعة والمصغية دائماً، وتحرص على أن تغادر كل واحدة راضية.',
     },
     serviceId: null,
   },
   {
-    id: 'aziza',
-    name: 'Aziza',
-    role: { fr: 'Brushing & coiffure', en: 'Blow-dry & styling', ar: 'البراشينغ والتصفيف' },
+    id: 'afef',
+    name: 'Afef',
+    role: { fr: 'Hammam & gommage', en: 'Hammam & scrub', ar: 'الحمام والتقشير' },
     text: {
-      fr: 'Nos clientes la citent pour ses brushings, souples et soignés, du lisse parfait au wavy.',
-      en: 'Clients mention her for her blow-dries, soft and polished, from perfectly sleek to wavy.',
-      ar: 'تذكرها زبوناتنا لبراشينغ ناعم ومتقن، من الأملس التام إلى المموج.',
+      fr: 'Citée dans les avis pour ses gommages, minutieux et tout en douceur.',
+      en: 'Mentioned in reviews for her scrubs, thorough and gentle.',
+      ar: 'تُذكر في التقييمات بتقشيرها الدقيق واللطيف.',
     },
-    serviceId: 'brushing',
+    serviceId: 'hammam-traditionnel',
+  },
+  {
+    id: 'hajar',
+    name: 'Hajar',
+    role: { fr: 'Massage', en: 'Massage', ar: 'التدليك' },
+    text: {
+      fr: 'Ses massages reviennent souvent dans les avis : une vraie parenthèse de détente.',
+      en: 'Her massages come up often in reviews: a true pause to unwind.',
+      ar: 'تدليكها يتكرر ذكره في التقييمات: استراحة حقيقية للاسترخاء.',
+    },
+    serviceId: 'massage-relaxant',
   },
 ]
 
 // Gift card amounts in DH. The offer itself is to confirm with the owner.
-export const giftCard = { amounts: [500, 1000, 1500], confirmed: false }
+export const giftCard = { amounts: [300, 500, 1000], confirmed: false }
 
 // Limited offer banner. Hidden automatically once `endsAt` has passed (inclusive, salon time).
-// Text comes from the service name + i18n; the end date is formatted per language.
+// Text comes from the service/pack name + i18n; the end date is formatted per language.
+// Price from a promo quoted in a Google review; the dates are placeholders.
 export const offer = {
-  serviceId: 'lissage-bresilien',
-  price: 780,
-  startsAt: '2026-10-05',
-  endsAt: '2026-10-12',
+  serviceId: 'detente',
+  price: 230,
+  startsAt: '2026-11-12',
+  endsAt: '2026-11-30',
 }
 
-// "Pourquoi Fezo's" — taken from recurring themes in Google reviews.
+// "Pourquoi Beauty Park" — taken from recurring themes in Google reviews.
+// `icon` is one of the names in Why.jsx's ICONS.
 export const promises = [
   {
-    id: 'cafe',
-    title: { fr: 'Café d’accueil', en: 'A coffee on arrival', ar: 'قهوة الترحيب' },
+    id: 'femmes',
+    icon: 'flower',
+    title: { fr: '100 % femmes', en: 'Women only', ar: 'للنساء فقط' },
     text: {
-      fr: 'Café et eau offerts dès votre arrivée, le temps de vous installer.',
-      en: 'Coffee and water offered as soon as you arrive, while you settle in.',
-      ar: 'قهوة وماء مجاناً عند وصولك، ريثما تستقرين.',
+      fr: 'Un lieu pensé par et pour les femmes, où l’on se sent à l’aise du hammam au brushing.',
+      en: 'A place made by and for women, where you feel at ease from the hammam to the blow-dry.',
+      ar: 'مكان صُمم من النساء وللنساء، تشعرين فيه بالراحة من الحمام إلى البراشينغ.',
     },
   },
   {
-    id: 'ponctualite',
-    title: { fr: 'Ponctualité', en: 'On time', ar: 'احترام الموعد' },
+    id: 'cabine',
+    icon: 'door',
+    title: { fr: 'Soins en cabine individuelle', en: 'Private treatment rooms', ar: 'علاجات في غرف خاصة' },
     text: {
-      fr: 'Votre rendez-vous est respecté à l’heure — votre temps compte.',
-      en: 'Your appointment starts on time — your time matters.',
-      ar: 'نحترم موعدك بالدقيقة، فوقتك مهم.',
+      fr: 'Chaque soin se fait en privé, jamais dans un espace collectif.',
+      en: 'Every treatment is private, never in a shared space.',
+      ar: 'كل علاج يتم على انفراد، وليس في فضاء مشترك.',
     },
   },
   {
-    id: 'massage',
-    title: { fr: 'Massage des pieds offert', en: 'Complimentary foot massage', ar: 'تدليك القدمين هدية' },
+    id: 'proprete',
+    icon: 'sparkles',
+    title: { fr: 'Moderne et impeccable', en: 'Modern and spotless', ar: 'عصري ونظيف' },
     text: {
-      fr: 'Inclus avec chaque manucure et pédicure.',
-      en: 'Included with every manicure and pedicure.',
-      ar: 'مع كل مانيكير وباديكير.',
+      fr: 'Un institut moderne, que nos clientes trouvent très propre.',
+      en: 'A modern institute that clients find very clean.',
+      ar: 'مركز عصري تجده زبوناتنا نظيفاً جداً.',
     },
   },
   {
-    id: 'produits',
-    title: { fr: 'Produits professionnels', en: 'Professional products', ar: 'منتجات احترافية' },
+    id: 'prix',
+    icon: 'badge',
+    title: { fr: 'Des prix justes', en: 'Fair prices', ar: 'أسعار معقولة' },
     text: {
-      fr: 'PN Pronails, Soin21, Hydrafacial — uniquement des gammes pro.',
-      en: 'PN Pronails, Soin21, Hydrafacial — professional ranges only.',
-      ar: 'PN Pronails وSoin21 وHydrafacial، مجموعات احترافية فقط.',
+      fr: 'Des prestations de qualité à des tarifs raisonnables, et des promos régulières.',
+      en: 'Quality treatments at reasonable prices, with regular offers.',
+      ar: 'خدمات عالية الجودة بأسعار معقولة، وعروض منتظمة.',
     },
   },
 ]
@@ -454,9 +494,9 @@ export const reviews = [
     id: 'r1',
     author: 'Salma',
     quote: {
-      fr: 'Un accueil chaleureux, une équipe attentionnée : on se sent vraiment chouchoutée du début à la fin.',
-      en: 'A warm welcome and an attentive team: you feel truly pampered from start to finish.',
-      ar: 'استقبال دافئ وفريق مهتم، تشعرين بالدلال من البداية إلى النهاية.',
+      fr: 'La propriétaire est adorable et à l’écoute : on se sent bien accueillie, entre de bonnes mains.',
+      en: 'The owner is lovely and attentive: you feel welcome and in good hands.',
+      ar: 'صاحبة المركز رائعة ومصغية: تشعرين بالترحيب وبأنك في أيادٍ أمينة.',
     },
     rating: 5,
     confirmed: false,
@@ -465,9 +505,9 @@ export const reviews = [
     id: 'r2',
     author: 'Kenza',
     quote: {
-      fr: 'Café et eau offerts à l’arrivée, et un rendez-vous respecté à la minute près. C’est rare.',
-      en: 'Coffee and water on arrival, and an appointment kept to the minute. That’s rare.',
-      ar: 'قهوة وماء عند الوصول، وموعد محترم بالدقيقة. وهذا نادر.',
+      fr: 'Du hammam au massage, sans oublier le brushing : tout était parfait, dans un institut très propre.',
+      en: 'From the hammam to the massage and the blow-dry: everything was perfect, in a very clean institute.',
+      ar: 'من الحمام إلى التدليك والبراشينغ: كل شيء كان مثالياً، في مركز نظيف جداً.',
     },
     rating: 5,
     confirmed: false,
@@ -476,9 +516,9 @@ export const reviews = [
     id: 'r3',
     author: 'Imane',
     quote: {
-      fr: 'Le massage des pieds offert avec la pédicure est un vrai moment de détente.',
-      en: 'The foot massage that comes with the pedicure is a real moment of calm.',
-      ar: 'تدليك القدمين مع الباديكير لحظة استرخاء حقيقية.',
+      fr: 'Venues sans rendez-vous pour une pédicure, nous avons été prises en charge tout de suite. Très relaxant.',
+      en: 'We came in for a pedicure without booking and were looked after right away. Very relaxing.',
+      ar: 'جئنا لباديكير دون موعد وتم الاهتمام بنا فوراً. تجربة مريحة جداً.',
     },
     rating: 5,
     confirmed: false,
@@ -487,9 +527,9 @@ export const reviews = [
     id: 'r4',
     author: 'Nadia',
     quote: {
-      fr: 'Une décoration magnifique et une ambiance raffinée — on a envie d’y rester.',
-      en: 'Beautiful decor and a refined atmosphere — you want to stay.',
-      ar: 'ديكور رائع وأجواء راقية، تتمنين البقاء.',
+      fr: 'Cliente fidèle depuis des années, pour la coiffure, les balayages et les soins : jamais déçue.',
+      en: 'A loyal client for years, for hair, balayage and treatments: never disappointed.',
+      ar: 'زبونة وفية منذ سنوات للتصفيف والبالياج والعلاجات: لم أخب أبداً.',
     },
     rating: 5,
     confirmed: false,
@@ -498,9 +538,9 @@ export const reviews = [
     id: 'r5',
     author: 'Houda',
     quote: {
-      fr: 'Lala Fatima Zohra vous reçoit avec le sourire, et Aziza a des doigts de fée pour le brushing.',
-      en: 'Lala Fatima Zohra greets you with a smile, and Aziza works magic with a blow-dry.',
-      ar: 'لالة فاطمة الزهراء تستقبلك بابتسامة، وعزيزة أناملها ساحرة في البراشينغ.',
+      fr: 'Une équipe chaleureuse, des produits de qualité et des prix très raisonnables.',
+      en: 'A warm team, quality products and very reasonable prices.',
+      ar: 'فريق دافئ ومنتجات عالية الجودة وأسعار معقولة جداً.',
     },
     rating: 5,
     confirmed: false,
@@ -508,9 +548,9 @@ export const reviews = [
 ]
 
 export const featuredQuote = {
-  fr: 'On se sent chouchoutée dès la porte franchie.',
-  en: 'You feel pampered the moment you walk in.',
-  ar: 'تشعرين بالدلال منذ أن تخطي عتبة الباب.',
+  fr: 'Du hammam au massage, tout a été parfait.',
+  en: 'From the hammam to the massage, everything was perfect.',
+  ar: 'من الحمام إلى التدليك، كان كل شيء مثالياً.',
 }
 
 // Header + mobile menu. Anchors match the section ids; labels live in i18n under nav.<id>.

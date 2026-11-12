@@ -55,7 +55,7 @@ export function StepMoment({ ids, date, time, onDate, onTime, errors }) {
             max={range.max}
             value={days.includes(date) ? '' : date}
             onChange={(e) => onDate(e.target.value)}
-            className="min-h-11 w-44 rounded-sharp border border-sand bg-linen px-3 py-2 text-meta text-charcoal transition-colors focus:border-charcoal"
+            className="min-h-11 w-44 rounded-sharp border border-sand bg-alabaster/50 px-3 py-2 text-meta text-charcoal transition-colors focus:border-charcoal"
           />
         </label>
         <Error id={ids.date}>{errors.date}</Error>

@@ -28,16 +28,20 @@ export function salonNow(date = new Date()) {
 }
 
 /**
- * Current status in salon time. `next` says when it opens if closed:
- * { open, day, today: {open, close}, next: null | { tomorrow, time } }
+ * Current status in salon time. `today` is null on a closed day. `next` says when it opens if closed:
+ * { open, day, today: null | {open, close}, next: null | { inDays: 0 | 1 | 2…, day, time } }
  */
 export function openStatus(date = new Date()) {
   const now = salonNow(date)
   const today = hours[now.day]
-  const open = now.minutes >= toMinutes(today.open) && now.minutes < toMinutes(today.close)
+  const open = Boolean(today) && now.minutes >= toMinutes(today.open) && now.minutes < toMinutes(today.close)
   let next = null
-  if (!open && now.minutes < toMinutes(today.open)) next = { tomorrow: false, time: today.open }
-  else if (!open) next = { tomorrow: true, time: hours[(now.day + 1) % 7].open }
+  if (open) return { open, day: now.day, today, next }
+  if (today && now.minutes < toMinutes(today.open)) next = { inDays: 0, day: now.day, time: today.open }
+  for (let k = 1; !next && k <= 7; k++) {
+    const day = (now.day + k) % 7
+    if (hours[day]) next = { inDays: k, day, time: hours[day].open }
+  }
   return { open, day: now.day, today, next }
 }
 

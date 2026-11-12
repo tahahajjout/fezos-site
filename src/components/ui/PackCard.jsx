@@ -3,12 +3,12 @@ import { formatPrice } from '../../lib/format'
 import { ImageFrame } from './ImageFrame'
 import { TextLink } from './TextLink'
 
-// Alabaster card on the linen section (tone step, no border). With `image` it becomes a
+// Frosted-glass card on the linen section. With `image` it becomes a
 // featured card: picture beside the text from sm up, stacked on phones.
 export function PackCard({ number, name, description, price, image, reverse = false, onBook, className = '' }) {
   const { t, l, lang } = useLang()
   return (
-    <article className={`group flex h-full flex-col bg-alabaster ${reverse ? 'sm:flex-row-reverse' : 'sm:flex-row'} ${className}`}>
+    <article className={`group flex h-full flex-col glass border ${reverse ? 'sm:flex-row-reverse' : 'sm:flex-row'} ${className}`}>
       {image && (
         <ImageFrame
           image={image}

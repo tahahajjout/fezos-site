@@ -34,7 +34,7 @@ export function Finder({ onBook }) {
   }
 
   return (
-    <section id="trouver" aria-labelledby="trouver-title" className="section-y bg-champagne-soft">
+    <section id="trouver" aria-labelledby="trouver-title" className="section-y bg-champagne-soft/60">
       <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-8">
         <Reveal stagger className="lg:sticky lg:top-32 lg:col-span-5 lg:self-start">
           <RevealItem>
@@ -100,7 +100,7 @@ export function Finder({ onBook }) {
 
           <div ref={resultRef} aria-live="polite" className="scroll-mb-28">
             {result && (
-              <div className="mt-12 bg-alabaster p-8 lg:p-10">
+              <div className="glass mt-12 border p-8 lg:p-10">
                 <p className="eyebrow">{t('finder.result')}</p>
                 <h3 className="mt-6 text-h3">{l(result.name)}</h3>
                 <p className="mt-3 max-w-[44ch]">{l(result.description)}</p>

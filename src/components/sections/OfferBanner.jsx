@@ -1,11 +1,12 @@
-import { offer, serviceCategories } from '../../data/salon'
+import { offer } from '../../data/salon'
 import { useLang } from '../../i18n'
 import { formatDate, formatPrice } from '../../lib/format'
+import { bookables } from '../../lib/booking'
 import { isOfferActive } from '../../lib/time'
 import { Arrow } from '../ui/Arrow'
 import { Container } from '../ui/Container'
 
-const service = serviceCategories.flatMap((c) => c.services).find((s) => s.id === offer.serviceId)
+const service = bookables.find((s) => s.id === offer.serviceId) // a single service or a pack
 
 // Thin champagne strip under the hero; hidden automatically after offer.endsAt.
 export function OfferBanner({ onBook }) {
@@ -13,7 +14,7 @@ export function OfferBanner({ onBook }) {
   if (!isOfferActive(offer)) return null
 
   return (
-    <aside aria-label={t('offer.label')} className="bg-champagne-soft text-charcoal">
+    <aside aria-label={t('offer.label')} className="bg-champagne-soft/60 text-charcoal backdrop-blur-xl">
       <Container>
         <button
           type="button"

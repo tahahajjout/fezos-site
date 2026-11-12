@@ -11,7 +11,7 @@ import { TextLink } from '../ui/TextLink'
 import { ThemeToggle } from '../ui/ThemeToggle'
 import { MobileMenu } from './MobileMenu'
 
-// Transparent with light text over the hero (in both themes); alabaster + blur + hairline once scrolled.
+// Transparent with light text over the hero (in both themes); frosted glass + hairline once scrolled.
 export function Header({ onBook }) {
   const { t } = useLang()
   const scrolled = useScrollHeader()
@@ -20,7 +20,7 @@ export function Header({ onBook }) {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 border-b transition-colors duration-500 ease-lux ${
-        scrolled ? 'border-sand bg-alabaster/90 text-charcoal backdrop-blur-md' : 'stay-dark border-transparent text-alabaster'
+        scrolled ? 'glass text-charcoal shadow-none' : 'stay-dark border-transparent text-alabaster'
       }`}
     >
       <Container className="flex h-20 items-center justify-between gap-8 lg:h-24">

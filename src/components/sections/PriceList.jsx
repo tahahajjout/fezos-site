@@ -10,7 +10,7 @@ import { SectionTitle } from '../ui/SectionTitle'
 export function PriceList({ tab, onBook }) {
   const { t } = useLang()
   return (
-    <section id="carte" aria-labelledby="carte-title" className="section-y overflow-x-clip bg-alabaster">
+    <section id="carte" aria-labelledby="carte-title" className="section-y overflow-x-clip bg-alabaster/40">
       <div className="container-site">
         <Reveal stagger className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <RevealItem className="lg:col-span-6">

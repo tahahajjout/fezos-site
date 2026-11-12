@@ -30,9 +30,9 @@ export const images = {
   },
 
   treatments: {
+    hammam: { id: '1507652313519-d4e9174996dd', alt: 'Bain en pierre claire et palmier, lumière douce de spa' },
     coiffure: { id: '1580618672591-eb180b1a973f', alt: 'Coiffeuse réalisant un brushing sur cheveux longs' },
     onglerie: { id: '1607779097040-26e80aa78e66', alt: 'Ongles nude et pailletés sur une maille crème' },
-    pedicure: { id: '1519415510236-718bdfcd89c8', alt: 'Pieds dans un bain de fleurs avant une pédicure' },
     visage: { id: '1570172619644-dfd03ed5d881', alt: 'Application d’un masque visage au pinceau' },
   },
 
@@ -40,7 +40,7 @@ export const images = {
     mariee: { id: '1487412947147-5cebf100ffc2', alt: 'Mise en beauté d’une mariée, rouge à lèvres rosé' },
     mainsPieds: { id: '1610992015732-2449b76344bc', alt: 'Mains manucurées posées sur une fourrure douce' },
     eclat: { id: '1616394584738-fc6e612e71b9', alt: 'Soin visage hydratant en cabine' },
-    rentree: { id: '1562322140-8baeececf3df', alt: 'Brushing en salon devant une grande fenêtre' },
+    detente: { id: '1544161515-4ab6ce6db874', alt: 'Massage aux huiles sur le dos, gestes lents et chaleureux' },
   },
 
   // ratio drives the editorial masonry: mix of 4:5, 1:1, 16:9. Order balances the 3 CSS columns.
@@ -48,9 +48,9 @@ export const images = {
     { id: '1610992015732-2449b76344bc', alt: 'Manucure naturelle aux tons rosés', ratio: [4, 5] },
     { id: '1620916566398-39f1143ab7be', alt: 'Crème de soin posée sur du lin blanc', ratio: [1, 1] },
     { id: '1580618672591-eb180b1a973f', alt: 'Brushing en cours sur cheveux châtains', ratio: [16, 9] },
-    { id: '1617897903246-719242758050', alt: 'Sérum doré et branche d’eucalyptus', ratio: [4, 5] },
+    { id: '1519823551278-64ac92734fb1', alt: 'Mains de masseuse sur un dos détendu', ratio: [4, 5] },
     { id: '1619451334792-150fd785ee74', alt: 'Mains tenant un pot de gel hydratant', ratio: [4, 5] },
-    { id: '1576426863848-c21f53c60b19', alt: 'Flacon compte-gouttes sur marbre clair', ratio: [1, 1] },
+    { id: '1620733723572-11c53f73a416', alt: 'Serviette roulée, bougies et diffuseur de spa', ratio: [1, 1] },
     { id: '1631729371254-42c2892f0e6e', alt: 'Flacons de soins capillaires sur plan en marbre', ratio: [16, 9] },
     { id: '1607779097040-26e80aa78e66', alt: 'Ongles lilas et argent sur maille crème', ratio: [1, 1] },
   ],

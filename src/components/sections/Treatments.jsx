@@ -16,7 +16,7 @@ export function Treatments({ onSelect }) {
   const { t } = useLang()
   const track = useRef(null)
   return (
-    <section id="soins" aria-labelledby="soins-title" className="section-y bg-linen">
+    <section id="soins" aria-labelledby="soins-title" className="section-y bg-linen/50">
       <div className="container-site">
         <Reveal stagger className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <RevealItem className="lg:col-span-7">

@@ -36,6 +36,30 @@ export function preload(img, ratio) {
   im.src = url(img, 1600, ratio)
 }
 
+/**
+ * The frosted room the photo floats in: its own colours, blown up and blurred behind it,
+ * crossfading as the photos turn. A charcoal scrim on top keeps the light text readable.
+ */
+export function Glow({ src, index, reduce }) {
+  const fade = { duration: reduce ? 0 : 1.1, ease: EASE }
+  return (
+    <>
+      <AnimatePresence initial={false}>
+        <motion.img
+          key={index}
+          src={src}
+          alt=""
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.7, transition: fade }}
+          exit={{ opacity: 0, transition: fade }}
+          className="absolute inset-0 h-full w-full scale-125 object-cover blur-3xl saturate-150"
+        />
+      </AnimatePresence>
+      <span className="absolute inset-0 bg-charcoal/45" />
+    </>
+  )
+}
+
 const pad = (n) => String(n).padStart(2, '0')
 const roll = {
   enter: (d) => ({ y: d > 0 ? '100%' : '-100%' }),

@@ -4,7 +4,7 @@ import { images } from '../../data/images'
 import { salon } from '../../data/salon'
 import { useOpenStatus } from '../../hooks/useOpenStatus'
 import { useLang } from '../../i18n'
-import { formatTime } from '../../lib/format'
+import { dayName, formatTime } from '../../lib/format'
 import { DURATION, EASE } from '../../lib/motion'
 import { Button } from '../ui/Button'
 import { Eyebrow } from '../ui/Eyebrow'
@@ -19,7 +19,10 @@ export function Hero({ onBook, introDelay = 0 }) {
   const words = t('hero.title').split(' ')
   const statusLabel = status.open
     ? t('status.openUntil', { time: formatTime(status.today.close, lang) })
-    : t(status.next.tomorrow ? 'status.opensTomorrow' : 'status.opensAt', { time: formatTime(status.next.time, lang) })
+    : t(['status.opensAt', 'status.opensTomorrow'][status.next.inDays] ?? 'status.opensOn', {
+        time: formatTime(status.next.time, lang),
+        day: lang === 'en' ? dayName(status.next.day, lang) : dayName(status.next.day, lang).toLowerCase(),
+      })
   // Supporting lines only glide (no fade): the subline is the LCP element, so it must paint at once.
   // Every element animates itself with its own delay (no parent→child variant hand-off: that
   // could leave the headline stuck invisible when the visitor scrolled away mid-intro).
@@ -110,7 +113,7 @@ export function Hero({ onBook, introDelay = 0 }) {
             {statusLabel}
           </span>
           <span aria-hidden="true" className="hidden sm:inline">·</span>
-          <span>{t('hero.cafe')}</span>
+          <span>{t('hero.perk')}</span>
         </motion.p>
       </div>
 

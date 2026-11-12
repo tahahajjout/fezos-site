@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { dayName, formatDate, formatDuration, formatPrice, formatTime } from './format.js'
+import { dayName, formatDate, formatDuration, formatPrice, formatTime, weekSummary } from './format.js'
 
 const sp = (s) => s.replace(/\s/g, ' ') // Intl uses narrow no-break spaces
 assert.equal(formatPrice(780), '780 DH')
@@ -23,4 +23,9 @@ assert.equal(dayName(1, 'ar'), 'الاثنين')
 assert.equal(formatDate('2026-10-20'), 'mardi 20 octobre')
 assert.equal(formatDate('2026-10-12', 'fr', { weekday: false }), '12 octobre')
 assert.equal(formatDate('2026-10-20', 'en'), 'Tuesday 20 October')
+// Week summary: closed days and equal hours grouped, Monday first
+const week = [{ open: '10:00', close: '20:00' }, null, ...Array(5).fill({ open: '10:00', close: '20:00' })]
+assert.deepEqual(weekSummary(week), [{ days: 'Lun.', time: null }, { days: 'Mar.–Dim.', time: '10h–20h' }])
+const allWeek = [{ open: '10:30', close: '20:00' }, { open: '10:30', close: '20:30' }, ...Array(5).fill({ open: '10:30', close: '20:00' })]
+assert.deepEqual(weekSummary(allWeek).map((l) => l.days), ['Lun.', 'Mar.–Dim.'])
 console.log('format OK')

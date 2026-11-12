@@ -17,7 +17,7 @@ const LAYOUT = [
 export function Packs({ onBook }) {
   const { t } = useLang()
   return (
-    <section id="packs" aria-labelledby="packs-title" className="section-y bg-linen">
+    <section id="packs" aria-labelledby="packs-title" className="section-y bg-linen/50">
       <div className="container-site">
         {/* Stacked header (title, then its line) so it doesn't repeat the split header of the sections around it */}
         <Reveal stagger className="max-w-3xl">

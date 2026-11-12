@@ -1,4 +1,4 @@
-import { Clock, Coffee, Droplets, Footprints } from 'lucide-react'
+import { BadgeCheck, Clock, Coffee, DoorClosed, Droplets, Flower2, Footprints, Sparkles } from 'lucide-react'
 import { featuredQuote, promises, salon } from '../../data/salon'
 import { useScrollWords } from '../../hooks/useScrollWords'
 import { useLang } from '../../i18n'
@@ -7,7 +7,8 @@ import { Reveal, RevealItem } from '../ui/Reveal'
 import { SectionTitle } from '../ui/SectionTitle'
 import { Words } from '../ui/Words'
 
-const ICONS = { cafe: Coffee, ponctualite: Clock, massage: Footprints, produits: Droplets }
+// The icons a promise can name in salon.js (`promises[].icon`).
+const ICONS = { coffee: Coffee, clock: Clock, footprints: Footprints, droplets: Droplets, flower: Flower2, door: DoorClosed, sparkles: Sparkles, badge: BadgeCheck }
 
 // Pourquoi Fezo's — charcoal. Title left, the four promises as a large-type list right,
 // then one review line set big across the section as its close.
@@ -36,7 +37,7 @@ export function Why() {
 
         <Reveal as="ul" stagger className="lg:col-span-6 lg:col-start-7">
           {promises.map((p) => {
-            const Icon = ICONS[p.id]
+            const Icon = ICONS[p.icon]
             return (
               <RevealItem
                 as="li"

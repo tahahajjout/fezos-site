@@ -74,33 +74,35 @@
   }
 }
 
-/* Brand palette — swap --champagne* to Fezo's orange (#D9772B) here if the owner prefers.
+/* Brand palette — Beauty Park Fez: the logo's gold on deep espresso, over warm blush-cream surfaces.
    `.stay-dark` re-declares it, so blocks that are dark by design (hero, charcoal sections, menus,
    lightbox) look the same in both themes; backdrops always darken. */
 :root, .stay-dark, ::backdrop {
-  --alabaster: #FDFBF7;
-  --linen: #F4F1EA;
-  --sand: #E9E3D8;
-  --charcoal: #1A1A1A;
-  --charcoal-soft: #2B2926;
-  --stone: #6B655D;
-  --champagne: #D4AF37;
-  --champagne-deep: #80641D; /* spec said #9C7C2B, which fails AA (3.8:1 on alabaster); this passes on alabaster, linen and champagne-soft */
-  --champagne-soft: #F3EAD3;
+  --alabaster: #FBF7F3;
+  --linen: #F3ECE6;
+  --sand: #E8DDD4;
+  --charcoal: #2A1F1E;
+  --charcoal-soft: #3D2E2C;
+  --stone: #6E615C;
+  --champagne: #D9AE62;
+  --champagne-deep: #86602A; /* gold text on light surfaces: AA on alabaster, linen and champagne-soft */
+  --champagne-soft: #F5E6CF;
+  --glass-edge: rgb(253 251 247 / 0.7); /* the light catching a pane's edge */
 }
 
 /* Dark theme: light surfaces turn warm dark, ink turns cream, gold text brightens (AA on the dark surfaces).
    Charcoal sections stay a step darker than the page, so the rhythm survives. */
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --alabaster: #22201C;
-  --linen: #2A2723;
-  --sand: #403A32;
-  --charcoal: #EDE7DC;
-  --charcoal-soft: #D8CFC0;
-  --stone: #A59D90;
-  --champagne-deep: #CDAA55;
-  --champagne-soft: #2F2819;
+  --alabaster: #241B1A;
+  --linen: #2D2321;
+  --sand: #463935;
+  --charcoal: #F1E7DF;
+  --charcoal-soft: #DCCFC4;
+  --stone: #ABA096;
+  --champagne-deep: #D8B06A;
+  --champagne-soft: #33271A;
+  --glass-edge: rgb(237 231 220 / 0.1);
 }
 
 /* The theme switch crossfades the whole page (browsers with View Transitions). */
@@ -125,6 +127,20 @@
     @apply bg-alabaster font-sans text-body font-normal text-charcoal;
     overflow-x: clip;
   }
+  /* Ambient light behind the whole page: soft champagne and sand pools the glass panes frost over.
+     Fixed, so it is painted once, not on every scroll frame. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(45% 55% at 12% 18%, color-mix(in oklab, var(--champagne) 34%, transparent), transparent 70%),
+      radial-gradient(40% 50% at 88% 30%, color-mix(in oklab, var(--champagne-soft) 95%, transparent), transparent 70%),
+      radial-gradient(55% 45% at 65% 95%, color-mix(in oklab, var(--champagne) 28%, transparent), transparent 70%),
+      radial-gradient(35% 40% at 20% 85%, color-mix(in oklab, var(--sand) 90%, transparent), transparent 70%);
+  }
   h1, h2, h3, h4 {
     @apply font-display font-light text-balance;
   }
@@ -140,6 +156,28 @@
   img {
     @apply block max-w-full;
   }
+}
+
+/* Frosted glass: a translucent tint of the surface, the page blurred behind it, a lit top edge.
+   `glass` for light surfaces (follows the theme), `glass-dark` for charcoal ones. Add `border` for the hairline. */
+@utility glass {
+  background-color: color-mix(in oklab, var(--alabaster) 55%, transparent);
+  border-color: var(--glass-edge);
+  backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow: inset 0 1px 0 var(--glass-edge), 0 24px 60px -32px rgb(26 26 26 / 0.3);
+}
+@utility glass-dark {
+  background-color: color-mix(in oklab, var(--charcoal) 82%, transparent);
+  border-color: rgb(253 251 247 / 0.12);
+  backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow: inset 0 1px 0 rgb(253 251 247 / 0.1);
+}
+
+/* The footer's giant name: the wordmark size, shrunk for longer names so any salon name stays on
+   one line. Set --wordmark-length (characters) on the same element. */
+@utility wordmark-fit {
+  font-size: min(var(--text-wordmark), calc(200vw / var(--wordmark-length, 6)));
+  line-height: var(--text-wordmark--line-height);
 }
 
 @utility eyebrow {

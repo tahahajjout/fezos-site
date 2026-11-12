@@ -28,12 +28,13 @@ function seoHead() {
     geo: { '@type': 'GeoCoordinates', latitude: salon.geo.lat, longitude: salon.geo.lng },
     hasMap: salon.mapsUrl,
     sameAs: [salon.instagram.url],
-    openingHoursSpecification: hours.map((h, d) => ({
+    // closed days (null) are left out
+    openingHoursSpecification: hours.flatMap((h, d) => (h ? [{
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: `https://schema.org/${DAYS[d]}`,
       opens: h.open,
       closes: h.close,
-    })),
+    }] : [])),
   }
 
   return {

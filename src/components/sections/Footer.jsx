@@ -1,13 +1,12 @@
 import { hours, nav, salon } from '../../data/salon'
 import { useLang } from '../../i18n'
-import { formatTime } from '../../lib/format'
+import { weekSummary } from '../../lib/format'
 import { TextLink } from '../ui/TextLink'
 
 // Designed close: the name returns at full width. Extra bottom padding on phones clears the sticky bar.
 export function Footer() {
   const { t, l, lang } = useLang()
   const { street, postalCode } = salon.address
-  const time = (d, k) => formatTime(hours[d][k], lang)
   return (
     <footer className="stay-dark bg-charcoal [&_.eyebrow]:text-champagne pb-[calc(6rem+env(safe-area-inset-bottom))] pt-20 text-alabaster lg:pb-10 lg:pt-28">
       <div className="container-site">
@@ -31,9 +30,11 @@ export function Footer() {
           <div className="text-alabaster/75 lg:col-span-2">
             <p className="eyebrow">{t('footer.hours')}</p>
             <p className="mt-4">
-              {t('footer.monday')} {time(1, 'open')}–{time(1, 'close')}
-              <br />
-              {t('footer.tueSun')} {time(2, 'open')}–{time(2, 'close')}
+              {weekSummary(hours, lang).map((line) => (
+                <span key={line.days} className="block">
+                  {line.days} {line.time ?? t('status.closed')}
+                </span>
+              ))}
             </p>
           </div>
 
@@ -57,7 +58,8 @@ export function Footer() {
 
         <p
           aria-hidden="true"
-          className="mt-20 select-none font-display text-wordmark font-light italic text-alabaster lg:mt-28"
+          className="mt-20 select-none whitespace-nowrap font-display wordmark-fit font-light italic text-alabaster lg:mt-28"
+          style={{ '--wordmark-length': salon.wordmark.name.length }}
         >
           {salon.wordmark.name}
         </p>

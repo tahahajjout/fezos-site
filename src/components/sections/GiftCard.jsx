@@ -17,7 +17,7 @@ export function GiftCard() {
   const message = t('gift.message', { amount: formatPrice(amount, lang) })
 
   return (
-    <section id="cadeau" aria-labelledby="cadeau-title" className="section-y bg-alabaster">
+    <section id="cadeau" aria-labelledby="cadeau-title" className="section-y bg-alabaster/40">
       <Reveal stagger className="container-site grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-8">
         <RevealItem className="lg:col-span-5">
           <ImageFrame image={images.gift} ratio={[4, 5]} sizes="(min-width: 1024px) 40vw, calc(100vw - 3rem)" />

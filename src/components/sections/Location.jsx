@@ -18,7 +18,7 @@ export function Location() {
   const city = l(salon.address.city)
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="section-y bg-alabaster">
+    <section id="contact" aria-labelledby="contact-title" className="section-y bg-alabaster/40">
       <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-8">
         <Reveal stagger className="lg:col-span-6">
           <RevealItem>
@@ -56,7 +56,7 @@ export function Location() {
                         {today && <span className="ms-2 text-meta text-champagne-deep">{t('common.today')}</span>}
                       </th>
                       <td className={`py-3 text-end tabular-nums ${today ? 'font-medium' : ''}`}>
-                        {formatTime(hours[d].open, lang)} – {formatTime(hours[d].close, lang)}
+                        {hours[d] ? `${formatTime(hours[d].open, lang)} – ${formatTime(hours[d].close, lang)}` : t('status.closed')}
                       </td>
                     </tr>
                   )

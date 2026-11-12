@@ -49,7 +49,7 @@ export function Gallery() {
   }
 
   return (
-    <section id="galerie" aria-labelledby="galerie-title" className="section-y bg-alabaster">
+    <section id="galerie" aria-labelledby="galerie-title" className="section-y bg-alabaster/40">
       <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-8">
         <Reveal stagger className="lg:sticky lg:top-32 lg:col-span-4 lg:self-start">
           <RevealItem>

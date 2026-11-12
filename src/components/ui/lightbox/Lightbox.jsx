@@ -5,11 +5,11 @@ import { onNativeClose, useDialog } from '../../../hooks/useDialog'
 import { useMediaQuery } from '../../../hooks/useMediaQuery'
 import { useLang } from '../../../i18n'
 import { EASE } from '../../../lib/motion'
-import { Counter, Photo, preload } from './LightboxParts'
+import { Counter, Glow, Photo, preload } from './LightboxParts'
 import { contain, useLightboxMotion } from './useLightboxMotion'
 
 const control =
-  'group inline-flex size-11 items-center justify-center text-alabaster/80 transition-colors duration-300 hover:text-champagne'
+  'group inline-flex size-11 items-center justify-center border border-alabaster/20 bg-alabaster/10 text-alabaster/80 backdrop-blur-md transition-colors duration-300 hover:text-champagne'
 
 // A turn: the new photo is unveiled by a curtain wiping in from the side it comes from and settles from
 // a slight zoom, while the old one drifts the other way beneath it and sinks into the dark.
@@ -87,12 +87,14 @@ export function Lightbox({ items, index, onIndex, onClose, thumbOf }) {
       }}
       className="m-0 h-dvh max-h-none w-full max-w-none stay-dark overflow-hidden bg-transparent p-0 text-alabaster backdrop:bg-transparent"
     >
-      <motion.div aria-hidden="true" className="absolute inset-0 bg-charcoal" style={{ opacity: veil }} />
+      <motion.div aria-hidden="true" className="absolute inset-0 overflow-hidden bg-charcoal/60 backdrop-blur-2xl" style={{ opacity: veil }}>
+        {open && <Glow src={thumbOf(index)?.currentSrc} index={index} reduce={reduce} />}
+      </motion.div>
       {img && (
         <div className="relative flex h-full flex-col">
           <motion.div style={{ opacity: veil }} className="container-site flex h-20 shrink-0 items-center justify-between">
             <Counter index={index} count={items.length} dir={dir} />
-            <button type="button" onClick={close} aria-label={t('gallery.close')} className={`-me-3 ${control}`}>
+            <button type="button" onClick={close} aria-label={t('gallery.close')} className={control}>
               <X size={22} strokeWidth={1.25} aria-hidden="true" />
             </button>
           </motion.div>
@@ -117,7 +119,7 @@ export function Lightbox({ items, index, onIndex, onClose, thumbOf }) {
           </div>
 
           <motion.div style={{ opacity: veil }} className="container-site flex h-24 shrink-0 items-center justify-between gap-6">
-            <button type="button" onClick={() => go(-1)} aria-label={t('gallery.prev')} className={`-ms-3 ${control}`}>
+            <button type="button" onClick={() => go(-1)} aria-label={t('gallery.prev')} className={control}>
               <ChevronLeft size={24} strokeWidth={1.25} aria-hidden="true" className="transition-transform duration-500 ease-lux group-hover:-translate-x-1 rtl:-scale-x-100 rtl:group-hover:translate-x-1" />
             </button>
             <div className="relative min-w-0 flex-1 overflow-hidden text-center" aria-live="polite">
@@ -133,7 +135,7 @@ export function Lightbox({ items, index, onIndex, onClose, thumbOf }) {
                 </motion.p>
               </AnimatePresence>
             </div>
-            <button type="button" onClick={() => go(1)} aria-label={t('gallery.next')} className={`-me-3 ${control}`}>
+            <button type="button" onClick={() => go(1)} aria-label={t('gallery.next')} className={control}>
               <ChevronRight size={24} strokeWidth={1.25} aria-hidden="true" className="transition-transform duration-500 ease-lux group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
             </button>
           </motion.div>

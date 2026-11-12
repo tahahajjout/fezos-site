@@ -26,7 +26,7 @@ export function Reviews() {
     })
 
   return (
-    <section id="avis" aria-labelledby="avis-title" className="section-y bg-linen">
+    <section id="avis" aria-labelledby="avis-title" className="section-y bg-linen/50">
       <div className="container-site">
         <Reveal stagger className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <RevealItem className="lg:col-span-7">

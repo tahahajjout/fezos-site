@@ -27,7 +27,9 @@ export function slotsFor(iso, date = new Date()) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return []
   const now = salonNow(date)
   if (iso < now.iso) return []
-  const { open, close } = hours[new Date(`${iso}T12:00:00Z`).getUTCDay()]
+  const day = hours[new Date(`${iso}T12:00:00Z`).getUTCDay()]
+  if (!day) return [] // closed that day
+  const { open, close } = day
   let start = toMinutes(open)
   if (iso === now.iso) start = Math.max(start, Math.ceil((now.minutes + LEAD) / SLOT) * SLOT)
   const slots = []
@@ -37,8 +39,7 @@ export function slotsFor(iso, date = new Date()) {
 
 /** First date (from today) that still has a free slot — the form's default. */
 export function firstOpenDate(date = new Date()) {
-  const { min } = bookingRange(date)
-  return slotsFor(min, date).length ? min : isoPlus(min, 1)
+  return openDays(1, date)[0]
 }
 
 /** The next `n` dates (from today) that still have a free slot — the booking day strip. */

@@ -8,12 +8,12 @@ const base =
 
 const variants = {
   solid: 'bg-charcoal text-alabaster hover:bg-charcoal-soft [&_svg]:group-hover:text-champagne',
-  outline: 'border border-charcoal text-charcoal hover:bg-charcoal hover:text-alabaster',
-  'ghost-light': 'border border-alabaster/40 text-alabaster hover:border-champagne hover:text-champagne',
-  whatsapp: 'border border-charcoal text-charcoal hover:bg-charcoal hover:text-alabaster',
+  outline: 'border border-charcoal bg-alabaster/30 text-charcoal backdrop-blur-md hover:bg-charcoal hover:text-alabaster',
+  'ghost-light': 'border border-alabaster/40 bg-alabaster/10 text-alabaster backdrop-blur-md hover:border-champagne hover:text-champagne',
+  whatsapp: 'border border-charcoal bg-alabaster/30 text-charcoal backdrop-blur-md hover:bg-charcoal hover:text-alabaster',
   // On dark backgrounds (hero, charcoal sections, mobile menu)
   'solid-light': 'bg-alabaster text-charcoal hover:bg-champagne-soft [&_svg]:group-hover:text-champagne-deep',
-  'whatsapp-light': 'border border-alabaster/40 text-alabaster hover:border-champagne hover:text-champagne',
+  'whatsapp-light': 'border border-alabaster/40 bg-alabaster/10 text-alabaster backdrop-blur-md hover:border-champagne hover:text-champagne',
 }
 
 export function Button({ variant = 'solid', href, arrow, className = '', children, ...rest }) {
